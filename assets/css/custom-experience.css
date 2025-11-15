@@ -1,0 +1,237 @@
+:root {
+  --exp-bg: #050505;
+  --exp-card-bg: #0d0d0f;
+  --exp-card-border: rgba(255, 255, 255, 0.06);
+  --exp-card-radius: 18px;
+  --exp-text-muted: rgba(255, 255, 255, 0.7);
+  --exp-accent: #ffb347;
+}
+
+/* Page wrapper */
+
+body.experience-page {
+  background: var(--exp-bg);
+  color: #fff;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Layout shell */
+
+.exp-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 4rem;
+}
+
+/* Header */
+
+.exp-header {
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.exp-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: var(--exp-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.exp-title {
+  font-size: clamp(2.1rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.exp-subtitle {
+  margin-top: 0.8rem;
+  max-width: 640px;
+  font-size: 0.95rem;
+  color: var(--exp-text-muted);
+}
+
+/* Grid of experience cards */
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.75rem;
+}
+
+.exp-card {
+  perspective: 1100px;
+}
+
+/* Card core */
+
+.exp-card-inner {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: var(--exp-card-radius);
+  background: linear-gradient(135deg, #121218, #060609);
+  border: 1px solid var(--exp-card-border);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.75s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+}
+
+.exp-card:hover .exp-card-inner {
+  transform: rotateY(180deg);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+}
+
+.exp-face {
+  position: absolute;
+  inset: 0;
+  padding: 1.4rem 1.6rem;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.exp-face-front {
+  z-index: 2;
+}
+
+.exp-face-back {
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at top left, #1b1b25, #050507 55%);
+}
+
+/* Front content */
+
+.exp-company {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.exp-role {
+  font-size: 0.9rem;
+  color: var(--exp-text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.exp-dates {
+  font-size: 0.8rem;
+  color: var(--exp-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.exp-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+.exp-tag {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.7rem;
+  color: var(--exp-text-muted);
+}
+
+/* Image strip on front */
+
+.exp-hover-strip {
+  position: relative;
+  height: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 0.9rem;
+  background: radial-gradient(circle at center, #232335, #050509);
+}
+
+.exp-hover-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  transform: scale(1.02);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.exp-card:hover .exp-hover-strip img {
+  transform: scale(1.06);
+  opacity: 1;
+}
+
+.exp-hover-label {
+  position: absolute;
+  inset: auto 0 0.35rem 0.7rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
+}
+
+/* Back content */
+
+.exp-back-body {
+  font-size: 0.78rem;
+  color: var(--exp-text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.9rem;
+}
+
+.exp-back-list {
+  margin: 0;
+  padding-left: 1.05rem;
+  font-size: 0.78rem;
+  color: var(--exp-text-muted);
+}
+
+.exp-back-list li {
+  margin-bottom: 0.25rem;
+}
+
+/* CTA row on back */
+
+.exp-cta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+}
+
+.exp-cta {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+
+.exp-cta:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.exp-cta-note {
+  color: var(--exp-text-muted);
+  font-size: 0.7rem;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 640px) {
+  .exp-shell {
+    padding-top: 4rem;
+  }
+
+  .exp-card-inner {
+    height: 280px;
+  }
+}

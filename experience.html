@@ -1,0 +1,413 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Experience | Gonzalo Cortes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Main theme styles from the template -->
+    <link rel="stylesheet" href="assets/css/theme/main.min.css" />
+
+    <!-- Simple page‑specific styles for the experience grid -->
+    <style>
+      :root {
+        --exp-bg: #050505;
+        --exp-card-bg: #0d0d0f;
+        --exp-card-border: rgba(255, 255, 255, 0.06);
+        --exp-card-radius: 18px;
+        --exp-text-muted: rgba(255, 255, 255, 0.7);
+        --exp-accent: #ffb347;
+      }
+
+      body.experience-page {
+        background: var(--exp-bg);
+        color: #fff;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      }
+
+      .exp-shell {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 5rem 1.5rem 4rem;
+      }
+
+      .exp-header {
+        margin-bottom: 3rem;
+        text-align: left;
+      }
+
+      .exp-kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.75rem;
+        color: var(--exp-text-muted);
+        margin-bottom: 0.75rem;
+      }
+
+      .exp-title {
+        font-size: clamp(2.1rem, 4vw, 2.8rem);
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      .exp-subtitle {
+        margin-top: 0.8rem;
+        max-width: 640px;
+        font-size: 0.95rem;
+        color: var(--exp-text-muted);
+      }
+
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.75rem;
+      }
+
+      .exp-card {
+        perspective: 1100px;
+      }
+
+      .exp-card-inner {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        border-radius: var(--exp-card-radius);
+        background: linear-gradient(135deg, #121218, #060609);
+        border: 1px solid var(--exp-card-border);
+        overflow: hidden;
+        transform-style: preserve-3d;
+        transition: transform 0.75s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+      }
+
+      .exp-card:hover .exp-card-inner {
+        transform: rotateY(180deg);
+        border-color: rgba(255, 255, 255, 0.18);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+      }
+
+      .exp-face {
+        position: absolute;
+        inset: 0;
+        padding: 1.4rem 1.6rem;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .exp-face-front {
+        z-index: 2;
+      }
+
+      .exp-face-back {
+        transform: rotateY(180deg);
+        background: radial-gradient(circle at top left, #1b1b25, #050507 55%);
+      }
+
+      .exp-company {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 0.15rem;
+      }
+
+      .exp-role {
+        font-size: 0.9rem;
+        color: var(--exp-text-muted);
+        margin-bottom: 0.6rem;
+      }
+
+      .exp-dates {
+        font-size: 0.8rem;
+        color: var(--exp-text-muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .exp-tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.8rem;
+      }
+
+      .exp-tag {
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.7rem;
+        color: var(--exp-text-muted);
+      }
+
+      .exp-hover-strip {
+        position: relative;
+        height: 100px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 0.9rem;
+        background: radial-gradient(circle at center, #232335, #050509);
+      }
+
+      .exp-hover-strip img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+        transform: scale(1.02);
+        transition: transform 0.5s ease, opacity 0.5s ease;
+      }
+
+      .exp-card:hover .exp-hover-strip img {
+        transform: scale(1.06);
+        opacity: 1;
+      }
+
+      .exp-hover-label {
+        position: absolute;
+        inset: auto 0 0.35rem 0.7rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.85);
+        text-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
+      }
+
+      .exp-back-body {
+        font-size: 0.78rem;
+        color: var(--exp-text-muted);
+        line-height: 1.5;
+        margin-bottom: 0.9rem;
+      }
+
+      .exp-back-list {
+        margin: 0;
+        padding-left: 1.05rem;
+        font-size: 0.78rem;
+        color: var(--exp-text-muted);
+      }
+
+      .exp-back-list li {
+        margin-bottom: 0.25rem;
+      }
+
+      .exp-cta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.6rem;
+        font-size: 0.75rem;
+      }
+
+      .exp-cta {
+        padding: 0.45rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: transparent;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.75rem;
+      }
+
+      .exp-cta:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .exp-cta-note {
+        color: var(--exp-text-muted);
+        font-size: 0.7rem;
+      }
+
+      @media (max-width: 640px) {
+        .exp-shell {
+          padding-top: 4rem;
+        }
+
+        .exp-card-inner {
+          height: 280px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="experience-page">
+    <main class="exp-shell">
+      <header class="exp-header">
+        <div class="exp-kicker">Experience</div>
+        <h1 class="exp-title">Places I&apos;ve built, shipped, and learned.</h1>
+        <p class="exp-subtitle">
+          Each card represents a chapter of my work so far. Hover to see a snapshot of the work environment and flip to
+          read what I actually did there. Later we&apos;ll plug in real photos and detailed stories for each role.
+        </p>
+      </header>
+
+      <section class="experience-grid">
+        <!-- Experience Card 1 -->
+        <article class="exp-card">
+          <div class="exp-card-inner">
+            <!-- Front face: company, role, hero image strip -->
+            <div class="exp-face exp-face-front">
+              <div>
+                <div class="exp-company">Company One</div>
+                <div class="exp-role">Role / Internship</div>
+                <div class="exp-dates">2023 · Location</div>
+                <div class="exp-tag-row">
+                  <span class="exp-tag">Engineering</span>
+                  <span class="exp-tag">Full‑time</span>
+                </div>
+              </div>
+              <div class="exp-hover-strip">
+                <img src="assets/images/experience/placeholder-1.jpg" alt="Company One preview" />
+                <div class="exp-hover-label">Hover · See the work</div>
+              </div>
+            </div>
+
+            <!-- Back face: summary bullets -->
+            <div class="exp-face exp-face-back">
+              <div>
+                <div class="exp-company">Company One</div>
+                <p class="exp-back-body">
+                  Short 2–3 sentence snapshot of what this role was about. Later we&apos;ll replace this with your real
+                  impact, projects, and team story.
+                </p>
+                <ul class="exp-back-list">
+                  <li>Bullet point highlight #1.</li>
+                  <li>Bullet point highlight #2.</li>
+                  <li>Bullet point highlight #3.</li>
+                </ul>
+              </div>
+              <div class="exp-cta-row">
+                <span class="exp-cta-note">Click to open a dedicated page later if we add one.</span>
+                <a href="#" class="exp-cta">View details</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experience Card 2 -->
+        <article class="exp-card">
+          <div class="exp-card-inner">
+            <div class="exp-face exp-face-front">
+              <div>
+                <div class="exp-company">Company Two</div>
+                <div class="exp-role">Role / Internship</div>
+                <div class="exp-dates">2022 · Location</div>
+                <div class="exp-tag-row">
+                  <span class="exp-tag">Software</span>
+                  <span class="exp-tag">Data</span>
+                </div>
+              </div>
+              <div class="exp-hover-strip">
+                <img src="assets/images/experience/placeholder-2.jpg" alt="Company Two preview" />
+                <div class="exp-hover-label">Hover · See the work</div>
+              </div>
+            </div>
+
+            <div class="exp-face exp-face-back">
+              <div>
+                <div class="exp-company">Company Two</div>
+                <p class="exp-back-body">
+                  Another concise description focused on what you did, what you built, and how you worked with the team.
+                </p>
+                <ul class="exp-back-list">
+                  <li>Impact bullet #1.</li>
+                  <li>Impact bullet #2.</li>
+                  <li>Impact bullet #3.</li>
+                </ul>
+              </div>
+              <div class="exp-cta-row">
+                <span class="exp-cta-note">We can link this to a longer case study later.</span>
+                <a href="#" class="exp-cta">View details</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experience Card 3 -->
+        <article class="exp-card">
+          <div class="exp-card-inner">
+            <div class="exp-face exp-face-front">
+              <div>
+                <div class="exp-company">Company Three</div>
+                <div class="exp-role">Role / Internship</div>
+                <div class="exp-dates">2021 · Location</div>
+                <div class="exp-tag-row">
+                  <span class="exp-tag">Civil</span>
+                  <span class="exp-tag">On‑site</span>
+                </div>
+              </div>
+              <div class="exp-hover-strip">
+                <img src="assets/images/experience/placeholder-3.jpg" alt="Company Three preview" />
+                <div class="exp-hover-label">Hover · See the work</div>
+              </div>
+            </div>
+
+            <div class="exp-face exp-face-back">
+              <div>
+                <div class="exp-company">Company Three</div>
+                <p class="exp-back-body">
+                  Think of this as the story version: what the environment was like, what problems you solved, and how
+                  you grew.
+                </p>
+                <ul class="exp-back-list">
+                  <li>Key responsibility #1.</li>
+                  <li>Key responsibility #2.</li>
+                  <li>Key responsibility #3.</li>
+                </ul>
+              </div>
+              <div class="exp-cta-row">
+                <span class="exp-cta-note">Could also jump to a gallery page.</span>
+                <a href="#" class="exp-cta">View details</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experience Card 4 -->
+        <article class="exp-card">
+          <div class="exp-card-inner">
+            <div class="exp-face exp-face-front">
+              <div>
+                <div class="exp-company">Company Four</div>
+                <div class="exp-role">Role / Internship</div>
+                <div class="exp-dates">2020 · Location</div>
+                <div class="exp-tag-row">
+                  <span class="exp-tag">Research</span>
+                  <span class="exp-tag">Part‑time</span>
+                </div>
+              </div>
+              <div class="exp-hover-strip">
+                <img src="assets/images/experience/placeholder-4.jpg" alt="Company Four preview" />
+                <div class="exp-hover-label">Hover · See the work</div>
+              </div>
+            </div>
+
+            <div class="exp-face exp-face-back">
+              <div>
+                <div class="exp-company">Company Four</div>
+                <p class="exp-back-body">
+                  We&apos;ll later swap this with your actual story: projects, skills, and what made this experience
+                  unique.
+                </p>
+                <ul class="exp-back-list">
+                  <li>Highlight #1.</li>
+                  <li>Highlight #2.</li>
+                  <li>Highlight #3.</li>
+                </ul>
+              </div>
+              <div class="exp-cta-row">
+                <span class="exp-cta-note">Optional link out to LinkedIn or PDF résumé.</span>
+                <a href="#" class="exp-cta">View details</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Main app script from the template (if needed for global behavior) -->
+    <script src="assets/js/app.js" defer></script>
+  </body>
+</html>
