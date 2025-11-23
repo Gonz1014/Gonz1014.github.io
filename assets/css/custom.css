@@ -1,40 +1,49 @@
 /* Add your own custom css here */
 
-/* Contact section: shared layout */
-.contact-section {
-  padding: 120px 0;
-  text-align: center;
-  background-color: #111111;       /* default: dark background */
-  color: #ffffff;                  /* default: white text */
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* ---------- CONTACT / FOOTER (uni-studio-footer) ---------- */
+/* Default to light mode text (black) */
+.uni-studio-footer { 
+  color: #000000 !important;
 }
 
-/* Light version of contact section (white background, black text) */
-.light-mode .contact-section,
-.contact-section--light {
-  background-color: #ffffff;
-  color: #111111;
+/* When any dark-mode class/attr is active, flip to white text */
+html.dark .uni-studio-footer,
+body.dark .uni-studio-footer,
+.dark .uni-studio-footer,
+html[data-theme="dark"] .uni-studio-footer,
+body[data-theme="dark"] .uni-studio-footer { 
+  color: #ffffff !important;
 }
 
-/* Dark version of contact section (black background, white text) */
-.dark-mode .contact-section,
-.contact-section--dark {
-  background-color: #111111;
-  color: #ffffff;
+/* Everything inside inherits footer color (kills template overrides) */
+.uni-studio-footer h1,
+.uni-studio-footer h2,
+.uni-studio-footer h3,
+.uni-studio-footer h4,
+.uni-studio-footer h5,
+.uni-studio-footer h6,
+.uni-studio-footer p,
+.uni-studio-footer a,
+.uni-studio-footer li,
+.uni-studio-footer span {
+  color: inherit !important;
 }
 
-/* Ensure all text and links inside inherit the correct color */
-.contact-section h1,
-.contact-section h2,
-.contact-section h3,
-.contact-section p,
-.contact-section a,
-.contact-section li,
-.contact-section span {
-  color: inherit;
+/* Neutralize hard-coded utility color classes inside the footer */
+.uni-studio-footer .uk-text-white,
+.uni-studio-footer .uk-text-gray-90,
+.uni-studio-footer .dark\:uk-text-gray-90 {
+  color: inherit !important;
 }
 
-/* Contact icons container */
+/* UIkit icons should follow current text color */
+.uni-studio-footer [data-uk-icon],
+.uni-studio-footer svg.uk-icon {
+  color: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* ---------- CONTACT LINKS ROW ---------- */
 .contact-links {
   display: flex;
   gap: 32px;
@@ -43,13 +52,11 @@
   margin-top: 24px;
 }
 
-/* Let UIkit icons follow the section text color */
+/* Icons keep the same color as text, with a subtle hover fade */
 .contact-links a span[data-uk-icon] {
   color: currentColor !important;
   opacity: 1 !important;
 }
-
-/* Hover effect for icons */
 .contact-links a:hover span[data-uk-icon] {
   opacity: 0.7 !important;
 }
