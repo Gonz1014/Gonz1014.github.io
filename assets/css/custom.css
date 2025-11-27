@@ -96,3 +96,21 @@ body[data-theme="dark"] .uni-studio-footer {
   fill: none;
   shape-rendering: geometricPrecision;
 }
+
+/* ---------- OVERRIDES: BIGGER ICONS + FILLED LINKEDIN ---------- */
+
+/* Make the LinkedIn icon a filled glyph (override the outline rule above) */
+.uni-studio-footer .contact-links [data-uk-icon*="linkedin"] svg *,
+.uni-studio-footer .contact-links [uk-icon*="linkedin"] svg *,
+.uni-studio-footer .contact-links a span[data-uk-icon*="linkedin"] svg *,
+.uni-studio-footer .contact-links a [uk-icon*="linkedin"] svg * {
+  fill: currentColor !important;
+  stroke: none !important;
+  vector-effect: none;
+}
+
+/* Make the icons MUCH larger and responsive (keeps same ratio) */
+.uni-studio-footer .contact-links .uk-icon svg {
+  width: clamp(140px, 18vmin, 260px) !important;
+  height: clamp(140px, 18vmin, 260px) !important;
+}
