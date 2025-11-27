@@ -46,10 +46,10 @@ body[data-theme="dark"] .uni-studio-footer {
 /* ---------- CONTACT LINKS ROW ---------- */
 .contact-links {
   display: flex;
-  gap: 32px;
+  gap: 56px;            /* wider spacing between icons */
   justify-content: center;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 32px;     /* more breathing room under the paragraph */
 }
 
 /* Icons keep the same color as text, with a subtle hover fade */
@@ -59,4 +59,18 @@ body[data-theme="dark"] .uni-studio-footer {
 }
 .contact-links a:hover span[data-uk-icon] {
   opacity: 0.7 !important;
+}
+
+/* Bigger contact icons (responsive) */
+.uni-studio-footer .contact-links .uk-icon svg {
+  width: 56px;
+  height: 56px;
+}
+
+@media (min-width: 1200px) {
+  .uni-studio-footer .contact-links .uk-icon svg { width: 64px; height: 64px; }
+}
+
+@media (max-width: 640px) {
+  .uni-studio-footer .contact-links .uk-icon svg { width: 44px; height: 44px; }
 }
