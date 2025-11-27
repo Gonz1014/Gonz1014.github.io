@@ -45,7 +45,7 @@
         <script src="https://cdn.jsdelivr.net/npm/swiper@8.3.2/swiper-bundle.min.js"></script>
         <script src="assets/js/uikit-components.js"></script>
     </head>
-    <body>
+    <body class="page-experience">
 
         <!-- Dark/Light toggle -->
         <div class="darkmode-trigger bottom-right" data-darkmode-toggle>
@@ -101,77 +101,169 @@
 
             <!-- Experience Overview -->
             <section class="uk-section-medium uk-section-2xlarge@m uk-panel uk-overflow-hidden uk-background-white dark:uk-background-gray-100">
-                <div class="uk-container uk-container-small">
-                    <div class="uk-margin-bottom uk-margin-large-bottom@m">
-                        <h2 class="uk-h3 uk-h1@m uk-margin-remove dark:uk-text-gray-10">Experience</h2>
-                        <p class="uk-text-large@m uk-margin-small-top dark:uk-text-gray-10">
-                            A selection of roles where I've built, shipped, and learned — spanning AI evals, software for health operations,
-                            data engineering in manufacturing, and civil engineering in the field.
-                        </p>
-                    </div>
-
-                    <div class="uk-grid uk-grid-large uk-child-width-1-1@s uk-child-width-1-2@m" data-uk-grid>
-                        <!-- Handshake AI -->
-                        <div>
-                            <article class="uk-card uk-card-default uk-card-body uk-border-rounded uk-height-1-1 dark:uk-background-gray-90 dark:uk-text-gray-10">
-                                <h3 class="uk-h4 uk-h3@m uk-margin-remove">Handshake AI — Model Validation Expert</h3>
-                                <p class="uk-text-meta uk-margin-xsmall-top">Remote • Jul 2025 – Present</p>
-                                <p class="uk-text-large@m uk-margin-small-top">
-                                    Built domain‑specific evaluations, reviewed/annotated model outputs, and surfaced safety risks and failure modes to guide model iteration and deployment readiness.
-                                </p>
-                                <ul class="uk-list uk-list-collapse uk-text-small uk-margin-small-top">
-                                    <li>• Ranked top 5 of 350 for prompt design; consistently top 15–20% across projects.</li>
-                                    <li>• Partnered with researchers across leading labs on eval design and analysis.</li>
-                                </ul>
-                            </article>
-                        </div>
-
-                        <!-- Chromie Health -->
-                        <div>
-                            <article class="uk-card uk-card-default uk-card-body uk-border-rounded uk-height-1-1 dark:uk-background-gray-90 dark:uk-text-gray-10">
-                                <h3 class="uk-h4 uk-h3@m uk-margin-remove">Chromie Health — Software Engineer</h3>
-                                <p class="uk-text-meta uk-margin-xsmall-top">New York, NY • Jul 2025 – Aug 2025</p>
-                                <p class="uk-text-large@m uk-margin-small-top">
-                                    Spearheaded a messaging‑driven scheduling workflow from concept to MVP under a compressed timeline; architected end‑to‑end alongside the CEO to scale with clinic growth.
-                                </p>
-                                <ul class="uk-list uk-list-collapse uk-text-small uk-margin-small-top">
-                                    <li>• Built Twilio SMS interface with Flask + PostgreSQL for real‑time updates.</li>
-                                    <li>• Cut communication delays and improved clinician‑manager coordination.</li>
-                                </ul>
-                            </article>
-                        </div>
-
-                        <!-- Kimberly-Clark -->
-                        <div>
-                            <article class="uk-card uk-card-default uk-card-body uk-border-rounded uk-height-1-1 dark:uk-background-gray-90 dark:uk-text-gray-10">
-                                <h3 class="uk-h4 uk-h3@m uk-margin-remove">Kimberly‑Clark — Data Engineer</h3>
-                                <p class="uk-text-meta uk-margin-xsmall-top">Mexico City Metro Area, MX • Jun 2025 – Jul 2025</p>
-                                <p class="uk-text-large@m uk-margin-small-top">
-                                    Audited three plants to identify downtime/scrap gaps and replaced fragmented spreadsheets with a centralized pipeline.
-                                </p>
-                                <ul class="uk-list uk-list-collapse uk-text-small uk-margin-small-top">
-                                    <li>• Wrote Python on machine PCs to parse locked Excel logs and transmit via Ethernet into SQL.</li>
-                                    <li>• Delivered live dashboards for cross‑plant visibility on production and quality metrics.</li>
-                                </ul>
-                            </article>
-                        </div>
-
-                        <!-- Mastec Civil -->
-                        <div>
-                            <article class="uk-card uk-card-default uk-card-body uk-border-rounded uk-height-1-1 dark:uk-background-gray-90 dark:uk-text-gray-10">
-                                <h3 class="uk-h4 uk-h3@m uk-margin-remove">Mastec Civil — Civil Engineer</h3>
-                                <p class="uk-text-meta uk-margin-xsmall-top">Miami, FL • Jun 2024 – Aug 2024</p>
-                                <p class="uk-text-large@m uk-margin-small-top">
-                                    Split time between estimating and field operations on a large highway project; supported real‑time problem solving across the site.
-                                </p>
-                                <ul class="uk-list uk-list-collapse uk-text-small uk-margin-small-top">
-                                    <li>• Produced detailed quantity takeoffs and cost breakdowns; found reuse savings and budget refinements.</li>
-                                    <li>• Assisted field engineers across trades to unblock work and keep schedules moving.</li>
-                                </ul>
-                            </article>
-                        </div>
-                    </div>
+              <div class="uk-container uk-container-small">
+                <div class="uk-margin-bottom uk-margin-large-bottom@m">
+                  <h2 class="uk-h3 uk-h1@m uk-margin-remove dark:uk-text-gray-10">Experience</h2>
+                  <p class="uk-text-large@m uk-margin-small-top dark:uk-text-gray-10">
+                    Hover to preview, click to open details. Titles alternate left/right. Each card uses a base photo; if images are missing, a graceful fallback is shown.
+                  </p>
                 </div>
+
+                <!-- Wide one-per-row cards -->
+                <div class="uk-grid uk-grid-large uk-child-width-1-1" data-uk-grid>
+
+                  <!-- Handshake AI (title left) -->
+                  <div>
+                    <article class="uk-card uk-card-default uk-card-body uk-border-rounded uk-height-1-1 xp-card"
+                             style="--xp-img: url('assets/images/experience/handshake/cover.jpg');"
+                             data-img1="assets/images/experience/handshake/1.jpg"
+                             data-img2="assets/images/experience/handshake/2.jpg"
+                             data-img3="assets/images/experience/handshake/3.jpg"
+                             data-img4="assets/images/experience/handshake/4.jpg"
+                             data-img5="assets/images/experience/handshake/5.jpg">
+                      <a class="uk-position-cover" href="#xp-handshake-modal" aria-label="Open Handshake details" data-uk-toggle></a>
+                      <div class="uk-position-medium uk-position-top-left uk-text-white uk-text-bold xp-card-inner">
+                        <h3 class="uk-h2 uk-margin-remove">Handshake AI</h3>
+                      </div>
+                      <div class="xp-mosaic" aria-hidden="true">
+                        <div class="xp-tile t1"></div><div class="xp-tile t2"></div><div class="xp-tile t3"></div>
+                        <div class="xp-tile t4"></div><div class="xp-tile t5"></div>
+                      </div>
+                    </article>
+                  </div>
+
+                  <!-- Chromie Health (title right) -->
+                  <div>
+                    <article class="uk-card uk-card-default uk-card-body uk-border-rounded uk-height-1-1 xp-card"
+                             style="--xp-img: url('assets/images/experience/chromie/cover.jpg');"
+                             data-img1="assets/images/experience/chromie/1.jpg"
+                             data-img2="assets/images/experience/chromie/2.jpg"
+                             data-img3="assets/images/experience/chromie/3.jpg"
+                             data-img4="assets/images/experience/chromie/4.jpg"
+                             data-img5="assets/images/experience/chromie/5.jpg">
+                      <a class="uk-position-cover" href="#xp-chromie-modal" aria-label="Open Chromie details" data-uk-toggle></a>
+                      <div class="uk-position-medium uk-position-top-right uk-text-white uk-text-bold xp-card-inner">
+                        <h3 class="uk-h2 uk-margin-remove uk-text-right">Chromie Health</h3>
+                      </div>
+                      <div class="xp-mosaic" aria-hidden="true">
+                        <div class="xp-tile t1"></div><div class="xp-tile t2"></div><div class="xp-tile t3"></div>
+                        <div class="xp-tile t4"></div><div class="xp-tile t5"></div>
+                      </div>
+                    </article>
+                  </div>
+
+                  <!-- Kimberly-Clark (title left) -->
+                  <div>
+                    <article class="uk-card uk-card-default uk-card-body uk-border-rounded uk-height-1-1 xp-card"
+                             style="--xp-img: url('assets/images/experience/kimberly/cover.jpg');"
+                             data-img1="assets/images/experience/kimberly/1.jpg"
+                             data-img2="assets/images/experience/kimberly/2.jpg"
+                             data-img3="assets/images/experience/kimberly/3.jpg"
+                             data-img4="assets/images/experience/kimberly/4.jpg"
+                             data-img5="assets/images/experience/kimberly/5.jpg">
+                      <a class="uk-position-cover" href="#xp-kimberly-modal" aria-label="Open Kimberly-Clark details" data-uk-toggle></a>
+                      <div class="uk-position-medium uk-position-top-left uk-text-white uk-text-bold xp-card-inner">
+                        <h3 class="uk-h2 uk-margin-remove">Kimberly‑Clark</h3>
+                      </div>
+                      <div class="xp-mosaic" aria-hidden="true">
+                        <div class="xp-tile t1"></div><div class="xp-tile t2"></div><div class="xp-tile t3"></div>
+                        <div class="xp-tile t4"></div><div class="xp-tile t5"></div>
+                      </div>
+                    </article>
+                  </div>
+
+                  <!-- Mastec Civil (title right) -->
+                  <div>
+                    <article class="uk-card uk-card-default uk-card-body uk-border-rounded uk-height-1-1 xp-card"
+                             style="--xp-img: url('assets/images/experience/mastec/cover.jpg');"
+                             data-img1="assets/images/experience/mastec/1.jpg"
+                             data-img2="assets/images/experience/mastec/2.jpg"
+                             data-img3="assets/images/experience/mastec/3.jpg"
+                             data-img4="assets/images/experience/mastec/4.jpg"
+                             data-img5="assets/images/experience/mastec/5.jpg">
+                      <a class="uk-position-cover" href="#xp-mastec-modal" aria-label="Open Mastec details" data-uk-toggle></a>
+                      <div class="uk-position-medium uk-position-top-right uk-text-white uk-text-bold xp-card-inner">
+                        <h3 class="uk-h2 uk-margin-remove uk-text-right">Mastec Civil</h3>
+                      </div>
+                      <div class="xp-mosaic" aria-hidden="true">
+                        <div class="xp-tile t1"></div><div class="xp-tile t2"></div><div class="xp-tile t3"></div>
+                        <div class="xp-tile t4"></div><div class="xp-tile t5"></div>
+                      </div>
+                    </article>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Full-screen modals with role details -->
+              <div id="xp-handshake-modal" class="uk-modal-full" data-uk-modal>
+                <div class="uk-modal-dialog">
+                  <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+                  <div class="uk-section uk-section-large">
+                    <div class="uk-container uk-container-small">
+                      <h3 class="uk-h1">Handshake AI — Model Validation Expert</h3>
+                      <p class="uk-text-meta uk-margin-small">Remote • Jul 2025 – Present</p>
+                      <p>Built domain-specific evaluations, reviewed/annotated model outputs, and surfaced safety risks and failure modes to guide model iteration and deployment readiness.</p>
+                      <ul class="uk-list uk-list-bullet">
+                        <li>Ranked top 5 of 350 for prompt design; consistently top 15–20% across projects.</li>
+                        <li>Partnered with researchers across leading labs on eval design and analysis.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="xp-chromie-modal" class="uk-modal-full" data-uk-modal>
+                <div class="uk-modal-dialog">
+                  <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+                  <div class="uk-section uk-section-large">
+                    <div class="uk-container uk-container-small">
+                      <h3 class="uk-h1">Chromie Health — Software Engineer</h3>
+                      <p class="uk-text-meta uk-margin-small">New York, NY • Jul 2025 – Aug 2025</p>
+                      <p>Spearheaded a messaging-driven scheduling workflow from concept to MVP under a compressed timeline; architected end-to-end alongside the CEO to scale with clinic growth.</p>
+                      <ul class="uk-list uk-list-bullet">
+                        <li>Built Twilio SMS interface with Flask + PostgreSQL for real-time updates.</li>
+                        <li>Cut communication delays and improved clinician-manager coordination.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="xp-kimberly-modal" class="uk-modal-full" data-uk-modal>
+                <div class="uk-modal-dialog">
+                  <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+                  <div class="uk-section uk-section-large">
+                    <div class="uk-container uk-container-small">
+                      <h3 class="uk-h1">Kimberly‑Clark — Data Engineer</h3>
+                      <p class="uk-text-meta uk-margin-small">Mexico City Metro Area, MX • Jun 2025 – Jul 2025</p>
+                      <p>Audited three plants to identify downtime/scrap gaps and replaced fragmented spreadsheets with a centralized pipeline.</p>
+                      <ul class="uk-list uk-list-bullet">
+                        <li>Wrote Python on machine PCs to parse locked Excel logs and transmit via Ethernet into SQL.</li>
+                        <li>Delivered live dashboards for cross-plant visibility on production and quality metrics.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="xp-mastec-modal" class="uk-modal-full" data-uk-modal>
+                <div class="uk-modal-dialog">
+                  <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+                  <div class="uk-section uk-section-large">
+                    <div class="uk-container uk-container-small">
+                      <h3 class="uk-h1">Mastec Civil — Civil Engineer</h3>
+                      <p class="uk-text-meta uk-margin-small">Miami, FL • Jun 2024 – Aug 2024</p>
+                      <p>Split time between estimating and field operations on a large highway project; supported real-time problem solving across the site.</p>
+                      <ul class="uk-list uk-list-bullet">
+                        <li>Produced detailed quantity takeoffs and cost breakdowns; found reuse savings and budget refinements.</li>
+                        <li>Assisted field engineers across trades to unblock work and keep schedules moving.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </section>
 
             <!-- Cta / Footer -->
@@ -230,5 +322,45 @@
         <script defer src="assets/js/helpers/typed-helper.js"></script>
         <script defer src="assets/js/helpers/anime-helper.js"></script>
         <script defer src="assets/js/helpers/anime-helper-defined-timelines.js"></script>
+        <script>
+        (function () {
+          function preload(url, done) {
+            if (!url) return done(false);
+            var img = new Image();
+            img.onload = function(){ done(true); };
+            img.onerror = function(){ done(false); };
+            img.src = url;
+          }
+          function extractUrlFromVar(styleStr) {
+            var m = styleStr && styleStr.match(/url\(['"]?([^'"]+)['"]?\)/i);
+            return m ? m[1] : null;
+          }
+
+          // Only run on the experience page (even if CSS is added later)
+          if (!document.body.classList.contains('page-experience')) return;
+
+          document.querySelectorAll('.xp-card').forEach(function(card){
+            // Fallback if cover image is missing
+            var styleAttr = card.getAttribute('style') || '';
+            var coverUrl = extractUrlFromVar(styleAttr);
+            preload(coverUrl, function(ok){
+              if (!ok) card.classList.add('xp-noimg');
+            });
+
+            // Bind mosaic tile images when present
+            var mosaic = card.querySelector('.xp-mosaic');
+            if (!mosaic) return;
+
+            ['1','2','3','4','5'].forEach(function(n){
+              var url = card.getAttribute('data-img' + n);
+              var tile = mosaic.querySelector('.t' + n);
+              if (!tile || !url) return;
+              preload(url, function(ok){
+                if (ok) tile.style.backgroundImage = "url('" + url + "')";
+              });
+            });
+          });
+        })();
+        </script>
     </body>
 </html>
