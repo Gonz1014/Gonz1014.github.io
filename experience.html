@@ -343,7 +343,17 @@
             // Fallback if cover image variable is not present
             var styleAttr = card.getAttribute('style') || '';
             var coverUrl = extractUrlFromVar(styleAttr);
-            if (!coverUrl) {
+
+            // Resolve cover URL to an absolute URL (handles relative and root-relative paths)
+            if (coverUrl) {
+              try {
+                var resolvedCover = (new URL(coverUrl, window.location.href)).href;
+                // ensure the CSS variable uses an absolute URL so it resolves correctly
+                card.style.setProperty('--xp-img', "url('" + resolvedCover + "')");
+              } catch (e) {
+                // if URL constructor fails, leave as-is
+              }
+            } else {
               card.classList.add('xp-noimg');
             }
 
@@ -355,8 +365,15 @@
               var url = card.getAttribute('data-img' + n);
               var tile = mosaic.querySelector('.t' + n);
               if (!tile || !url) return;
-              preload(url, function(ok){
-                if (ok) tile.style.backgroundImage = "url('" + url + "')";
+              // resolve tile URL relative to the page
+              var resolvedTile = url;
+              try {
+                resolvedTile = (new URL(url, window.location.href)).href;
+              } catch (e) {
+                // leave url as-is
+              }
+              preload(resolvedTile, function(ok){
+                if (ok) tile.style.backgroundImage = "url('" + resolvedTile + "')";
               });
             });
           });
