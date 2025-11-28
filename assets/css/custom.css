@@ -255,3 +255,35 @@ body[data-theme="dark"] .uni-studio-footer {
 }
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after { right: -1px; }
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t2::after { left: -1px; }
+/* ===== EXPERIENCE — finishing adjustments (scoped) ===== */
+
+/* 1) Taller responsive cards for better photo composition */
+.page-experience .xp-card {
+  min-height: clamp(380px, 38vw, 520px);
+}
+
+/* 2) Full-bleed imagery — remove inner card padding */
+.page-experience .xp-card.uk-card-body {
+  padding: 0;
+}
+
+/* 3) Clickable overlay above everything; title above tiles */
+.page-experience .xp-card > a.uk-position-cover { z-index: 3; }
+.page-experience .xp-card .xp-card-inner       { z-index: 2; }
+.page-experience .xp-mosaic                    { z-index: 1; }
+
+/* 4) Two-tile split must fill each half completely */
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1,
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 {
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background-size: cover;     /* crop to fill */
+  background-position: center;
+}
+
+/* 5) Remove any seam between halves */
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after,
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2::after {
+  display: none !important;
+}

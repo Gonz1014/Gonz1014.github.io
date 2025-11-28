@@ -195,10 +195,10 @@
                 </div>
               </div>
 
-              <!-- Full-screen modals with role details -->
-              <div id="xp-handshake-modal" class="uk-modal-full" data-uk-modal>
-                <div class="uk-modal-dialog">
-                  <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+              <!-- Dialog-sized modals with role details -->
+              <div id="xp-handshake-modal" class="uk-modal" data-uk-modal>
+                <div class="uk-modal-dialog uk-modal-body uk-width-1-1 uk-width-2xlarge@m">
+                  <button class="uk-modal-close-default uk-close-large" type="button" data-uk-close></button>
                   <div class="uk-section uk-section-large">
                     <div class="uk-container uk-container-small">
                       <h3 class="uk-h1">Handshake AI — Model Validation Expert</h3>
@@ -213,9 +213,9 @@
                 </div>
               </div>
 
-              <div id="xp-chromie-modal" class="uk-modal-full" data-uk-modal>
-                <div class="uk-modal-dialog">
-                  <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+              <div id="xp-chromie-modal" class="uk-modal" data-uk-modal>
+                <div class="uk-modal-dialog uk-modal-body uk-width-1-1 uk-width-2xlarge@m">
+                  <button class="uk-modal-close-default uk-close-large" type="button" data-uk-close></button>
                   <div class="uk-section uk-section-large">
                     <div class="uk-container uk-container-small">
                       <h3 class="uk-h1">Chromie Health — Software Engineer</h3>
@@ -230,9 +230,9 @@
                 </div>
               </div>
 
-              <div id="xp-kimberly-modal" class="uk-modal-full" data-uk-modal>
-                <div class="uk-modal-dialog">
-                  <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+              <div id="xp-kimberly-modal" class="uk-modal" data-uk-modal>
+                <div class="uk-modal-dialog uk-modal-body uk-width-1-1 uk-width-2xlarge@m">
+                  <button class="uk-modal-close-default uk-close-large" type="button" data-uk-close></button>
                   <div class="uk-section uk-section-large">
                     <div class="uk-container uk-container-small">
                       <h3 class="uk-h1">Kimberly‑Clark — Data Engineer</h3>
@@ -247,9 +247,9 @@
                 </div>
               </div>
 
-              <div id="xp-mastec-modal" class="uk-modal-full" data-uk-modal>
-                <div class="uk-modal-dialog">
-                  <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+              <div id="xp-mastec-modal" class="uk-modal" data-uk-modal>
+                <div class="uk-modal-dialog uk-modal-body uk-width-1-1 uk-width-2xlarge@m">
+                  <button class="uk-modal-close-default uk-close-large" type="button" data-uk-close></button>
                   <div class="uk-section uk-section-large">
                     <div class="uk-container uk-container-small">
                       <h3 class="uk-h1">Mastec Civil — Civil Engineer</h3>
@@ -340,12 +340,12 @@
           if (!document.body.classList.contains('page-experience')) return;
 
           document.querySelectorAll('.xp-card').forEach(function(card){
-            // Fallback if cover image is missing
+            // Fallback if cover image variable is not present
             var styleAttr = card.getAttribute('style') || '';
             var coverUrl = extractUrlFromVar(styleAttr);
-            preload(coverUrl, function(ok){
-              if (!ok) card.classList.add('xp-noimg');
-            });
+            if (!coverUrl) {
+              card.classList.add('xp-noimg');
+            }
 
             // Bind mosaic tile images when present
             var mosaic = card.querySelector('.xp-mosaic');
