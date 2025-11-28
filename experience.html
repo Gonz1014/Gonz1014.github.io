@@ -221,10 +221,13 @@
                     <div class="uk-container uk-container-small">
                       <h3 class="uk-h1">Chromie Health — Software Engineer</h3>
                       <p class="uk-text-meta uk-margin-small">New York, NY • Jul 2025 – Aug 2025</p>
-                      <p>Spearheaded a messaging-driven scheduling workflow from concept to MVP under a compressed timeline; architected end-to-end alongside the CEO to scale with clinic growth.</p>
                       <ul class="uk-list uk-list-bullet">
-                        <li>Built Twilio SMS interface with Flask + PostgreSQL for real-time updates.</li>
-                        <li>Cut communication delays and improved clinician-manager coordination.</li>
+                        <li>Reduced communication delays and improved clinician and manager coordination by using SMS for requests and updates, integrated with the website calendar to sync changes instantly and prevent double booking.</li>
+                        <li>Built a Flask backend that receives SMS from Twilio, records and updates requests, and moves each shift step by step from ask to approval to scheduled on the calendar, with checks to prevent duplicates.</li>
+                        <li>Led product thinking, workflow design, and rapid prototyping, partnering with the CEO and clinic staff to prioritize usability and ship under constraints.</li>
+                        <li>Implemented AI intent classification and entity extraction for inbound SMS so the system could understand messages, trigger the correct flow, and queue deferred processing when appropriate.</li>
+                        <li>Created relational data models in PostgreSQL for conversations, requests, alternatives, approvals, and audit logs to ensure traceability and extensibility.</li>
+                        <li>Integrated Twilio SMS with the real time website calendar to create and update shifts instantly and prevent double booking.</li>
                       </ul>
                     </div>
                   </div>
