@@ -335,3 +335,49 @@ body[data-theme="dark"] .uni-studio-footer {
 /* No seam between halves */
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after,
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t2::after { display: none !important; }
+.page-experience .xp-card{
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 16px !important; /* preserve rounded corners */
+}
+
+/* Mosaic must perfectly cover the card */
+.page-experience .xp-mosaic{
+  position: absolute !important;
+  inset: 0 !important;                 /* top:0 right:0 bottom:0 left:0 */
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: 1fr !important;
+  gap: 0 !important;
+  border-radius: inherit !important;
+  overflow: hidden !important;
+  pointer-events: none !important;      /* don't block clicks */
+  z-index: 8 !important;                 /* below title, above cover */
+}
+
+/* Readability overlay above tiles, below title */
+.page-experience .xp-card::after{
+  z-index: 8 !important;                 /* darken both halves on hover */
+}
+
+/* Tiles fill their half completely */
+.page-experience .xp-mosaic .xp-tile,
+.page-experience .xp-mosaic .t1,
+.page-experience .xp-mosaic .t2{
+  min-width: 0 !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;         /* neutralize older absolute rules */
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+/* Requested focal points */
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1{ background-position: 25% center !important; }
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2{ background-position: 75% center !important; }
