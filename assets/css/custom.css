@@ -227,3 +227,31 @@ body[data-theme="dark"] .uni-studio-footer {
   .page-experience .xp-card::after { transition: none; }
   .page-experience .xp-mosaic .xp-tile { transition: none; }
 }
+/* ===== EXPERIENCE: 2‑tile split layout (Handshake) ===== */
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1,
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 {
+  top: 0;
+  height: 100%;
+}
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1 {
+  left: 0;
+  width: 50%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 {
+  right: 0;
+  width: 50%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+/* Optional: a subtle seam between halves (remove if not desired) */
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after,
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; width: 2px;
+  background: rgba(255,255,255,.25);
+}
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after { right: -1px; }
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2::after { left: -1px; }
