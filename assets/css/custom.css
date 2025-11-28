@@ -236,7 +236,7 @@ body[data-theme="dark"] .uni-studio-footer {
 
 /* 1) Taller responsive cards for better photo composition */
 .page-experience .xp-card {
-  min-height: clamp(380px, 38vw, 520px);
+  min-height: clamp(300px, 32vw, 400px);
 }
 
 /* 2) Full-bleed imagery — remove inner card padding */
@@ -255,7 +255,7 @@ body[data-theme="dark"] .uni-studio-footer {
 
 /* Put the COVER directly on the card element (more robust than ::before) and make cards larger */
 .page-experience .xp-card {
-  min-height: clamp(520px, 50vw, 720px) !important;
+  min-height: clamp(320px, 35vw, 450px) !important;
   background-image: var(--xp-img, none) !important;
   background-size: cover !important;
   background-position: center !important;
@@ -343,3 +343,11 @@ body[data-theme="dark"] .uni-studio-footer {
 /* Requested focal points */
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t1{ background-position: 25% center !important; }
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t2{ background-position: 75% center !important; }
+
+/* Handshake_AI hover-right: fit entire photo with white background */
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-color: #ffffff !important;
+  background-position: center !important;
+}
