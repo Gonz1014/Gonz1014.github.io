@@ -210,12 +210,15 @@ body[data-theme="dark"] .uni-studio-footer {
   transform: translateY(0);
 }
 
-/* Five-tile layout (roughly matches provided sketch) */
-.page-experience .xp-mosaic .t1 { left: 0;    top: 0;    width: 28%; height: 60%; }
-.page-experience .xp-mosaic .t2 { left: 30%;  top: 0;    width: 38%; height: 60%; }
-.page-experience .xp-mosaic .t3 { right: 0;   top: 0;    width: 28%; height: 60%; }
-.page-experience .xp-mosaic .t4 { left: 0;    bottom: 0; width: 48%; height: 36%; }
-.page-experience .xp-mosaic .t5 { right: 0;   bottom: 0; width: 48%; height: 36%; }
+/* Split-2 specific: tiles must be visible on hover */
+.page-experience .xp-card.xp-split-2:hover .xp-mosaic .xp-tile,
+.page-experience .xp-card.xp-split-2:hover .xp-mosaic .t1,
+.page-experience .xp-card.xp-split-2:hover .xp-mosaic .t2 {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Removed old five-tile layout rules - using CSS Grid instead */
 
 @media (min-width: 1200px) {
   .page-experience .xp-card { min-height: 300px; }
@@ -228,33 +231,7 @@ body[data-theme="dark"] .uni-studio-footer {
   .page-experience .xp-mosaic .xp-tile { transition: none; }
 }
 /* ===== EXPERIENCE: 2‑tile split layout (Handshake) ===== */
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t1,
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 {
-  top: 0;
-  height: 100%;
-}
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t1 {
-  left: 0;
-  width: 50%;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 {
-  right: 0;
-  width: 50%;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-/* Optional: a subtle seam between halves (remove if not desired) */
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after,
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t2::after {
-  content: "";
-  position: absolute;
-  top: 0; bottom: 0; width: 2px;
-  background: rgba(255,255,255,.25);
-}
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after { right: -1px; }
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t2::after { left: -1px; }
+/* Removed old rules that conflicted with grid layout - using CSS Grid instead */
 /* ===== EXPERIENCE — finishing adjustments (scoped) ===== */
 
 /* 1) Taller responsive cards for better photo composition */
@@ -272,21 +249,7 @@ body[data-theme="dark"] .uni-studio-footer {
 .page-experience .xp-card .xp-card-inner       { z-index: 2; }
 .page-experience .xp-mosaic                    { z-index: 1; }
 
-/* 4) Two-tile split must fill each half completely */
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t1,
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 {
-  top: 0;
-  height: 100%;
-  width: 50%;
-  background-size: cover;     /* crop to fill */
-  background-position: center;
-}
-
-/* 5) Remove any seam between halves */
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after,
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t2::after {
-  display: none !important;
-}
+/* Removed - using CSS Grid layout instead */
 
 /* ===== EXPERIENCE — definitive overrides (robust) ===== */
 
@@ -323,14 +286,13 @@ body[data-theme="dark"] .uni-studio-footer {
 .page-experience .xp-card .xp-card-inner       { z-index: 9 !important; }
 .page-experience .xp-mosaic                    { z-index: 8 !important; }
 
-/* Two-tile split: each side fills half; custom focal points 25% / 75% */
+/* Two-tile split: each side fills half */
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t1,
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t2 {
-  top: 0; height: 100%; width: 50%;
   background-size: cover !important;
 }
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t1 { left: 0;  background-position: 25% center !important; }
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 { right: 0; background-position: 75% center !important; }
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1 { background-position: 25% center !important; }
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t2 { background-position: 75% center !important; }
 
 /* No seam between halves */
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t1::after,
