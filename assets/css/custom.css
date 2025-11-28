@@ -390,3 +390,11 @@ body[data-theme="dark"] .uni-studio-footer {
   background-color: #ffffff !important;
   background-position: center !important;
 }
+
+/* Mastec Civil cover: fit entire photo with white background */
+.page-experience .xp-card.xp-mastec {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-color: #ffffff !important;
+  background-position: center !important;
+}
