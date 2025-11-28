@@ -341,7 +341,7 @@ body[data-theme="dark"] .uni-studio-footer {
 }
 
 /* Requested focal points */
-.page-experience .xp-card.xp-split-2 .xp-mosaic .t1{ background-position: 25% 40% !important; }
+.page-experience .xp-card.xp-split-2 .xp-mosaic .t1{ background-position: 25% 60% !important; }
 .page-experience .xp-card.xp-split-2 .xp-mosaic .t2{ background-position: 75% center !important; }
 
 /* Chromie-specific mosaic (left large, right stacked) */
