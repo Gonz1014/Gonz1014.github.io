@@ -54,6 +54,126 @@
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit-icons.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@8.3.2/swiper-bundle.min.js"></script>
         <script src="assets/js/uikit-components.js"></script>
+        <style>
+    .about-map-wrapper {
+        margin-top: 3rem;
+    }
+
+    .about-map-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 2.5fr) minmax(260px, 1fr);
+        gap: 2rem;
+    }
+
+    .map-shell {
+        position: relative;
+    }
+
+    .map-container {
+        width: 100%;
+        height: 420px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #111111;
+    }
+
+    .city-hover-card {
+        position: absolute;
+        right: 1.5rem;
+        bottom: 1.5rem;
+        max-width: 260px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        display: none; /* Show this via JS once wired up */
+        background: #ffffff;
+    }
+
+    .city-hover-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .city-hover-name {
+        letter-spacing: 0.08em;
+    }
+
+    .about-legend-list {
+        margin-top: 0.75rem;
+    }
+
+    .about-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .about-legend-swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .about-legend-swatch.lived {
+        background: #ffb347; /* replace with your brand color later */
+    }
+
+    .about-legend-swatch.visited {
+        background: #7fd1ae;
+    }
+
+    .about-legend-swatch.not-yet {
+        background: #e2e2e2;
+    }
+
+    .city-list {
+        margin-top: 1.5rem;
+    }
+
+    .city-list ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .city-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.3rem 0;
+        font-size: 0.9rem;
+        cursor: pointer;
+    }
+
+    .city-list li span.city-status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        display: inline-block;
+        margin-left: 0.5rem;
+        background: currentColor;
+        opacity: 0.7;
+    }
+
+    @media (max-width: 959px) {
+        .about-map-grid {
+            display: block;
+        }
+
+        .map-container {
+            height: 320px;
+        }
+
+        .city-hover-card {
+            position: static;
+            margin-top: 1rem;
+            max-width: 100%;
+        }
+    }
+        </style>
     </head>
     <body>
 
@@ -120,6 +240,94 @@
                         <div class="uk-section-2xlarge uk-panel uk-flex-column uk-flex-center" data-uk-height-viewport="offset-top: true;">
                             <h2 class="uk-h2 suk-h1@s uk-heading-d1@m dark:uk-text-gray-10">Hey, we’re dannel.</h2>
                             <p class="uk-text-2xlarge@m uk-margin-large-top@m">We're a digital product and ux agency in Leeds, we do branding strategy, design, and development across all platforms.</p>
+
+                            <!-- About Map Section: main interactive map area -->
+                            <div id="about-map" class="about-map-wrapper uk-margin-large-top">
+                                <div class="about-map-grid">
+                                    <!-- Left: Map and hover card shell -->
+                                    <div class="map-shell">
+                                        <!-- This is where you will initialize your map library (Leaflet / Mapbox, etc.) -->
+                                        <div id="world-map"
+                                             class="map-container"
+                                             aria-label="World map of places I've lived and visited">
+                                            <!-- JS will render the interactive map here -->
+                                        </div>
+
+                                        <!-- City hover card; content will be filled dynamically when a city is hovered/clicked -->
+                                        <div id="city-hover-card" class="city-hover-card uk-card uk-card-default uk-card-small">
+                                            <div class="city-hover-image-wrapper">
+                                                <img src="assets/images/cities/sample-city.jpg"
+                                                     alt="City name"
+                                                     id="city-hover-image">
+                                            </div>
+                                            <div class="uk-padding-small">
+                                                <p class="uk-text-small uk-text-uppercase uk-margin-remove city-hover-name" id="city-hover-name">City name</p>
+                                                <p class="uk-text-small uk-margin-remove city-hover-caption" id="city-hover-caption">Short caption about what this city means to you.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Legend + future filters + city list -->
+                                    <aside class="about-map-sidebar">
+                                        <h3 class="uk-h5 uk-margin-remove dark:uk-text-gray-10">Places</h3>
+                                        <p class="uk-text-small uk-margin-small-top uk-margin-medium-bottom@m">
+                                            Hover over a city pin (or tap on mobile) to see a photo and a short story.
+                                        </p>
+
+                                        <!-- Legend for country status -->
+                                        <div class="about-legend">
+                                            <p class="uk-text-small uk-text-muted uk-margin-remove">Country status</p>
+                                            <ul class="about-legend-list uk-list">
+                                                <li class="about-legend-item">
+                                                    <span class="about-legend-swatch lived"></span>
+                                                    <span>Lived</span>
+                                                </li>
+                                                <li class="about-legend-item">
+                                                    <span class="about-legend-swatch visited"></span>
+                                                    <span>Visited</span>
+                                                </li>
+                                                <li class="about-legend-item">
+                                                    <span class="about-legend-swatch not-yet"></span>
+                                                    <span>Not yet</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Future: simple filters to toggle markers by status (to be wired with JS) -->
+                                        <div class="about-filters uk-margin-medium-top">
+                                            <p class="uk-text-small uk-text-muted uk-margin-small-bottom">Filter cities</p>
+                                            <ul class="uk-list uk-list-collapse uk-text-small">
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" checked data-city-filter="lived">
+                                                        <span>Lived</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <input type="checkbox" checked data-city-filter="visited">
+                                                        <span>Visited</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- City list: mirror of map markers (replace sample items with your real cities) -->
+                                        <div class="city-list uk-margin-medium-top">
+                                            <p class="uk-text-small uk-text-muted uk-margin-small-bottom">Cities</p>
+                                            <ul>
+                                                <!-- Example item: update or duplicate this structure for each city -->
+                                                <li data-city-id="sample-city" data-city-status="visited">
+                                                    <span>Sample City, Country</span>
+                                                    <span class="city-status-dot"></span>
+                                                </li>
+                                                <!-- Add more <li> items here later for each city you want to show -->
+                                            </ul>
+                                        </div>
+                                    </aside>
+                                </div>
+                            </div>
+
                             <a href="#uni-studio-services" class="uk-link-underline uk-text-large@m uk-margin-xlarge-top@m" data-uk-scroll="offset: 128;">
                                 <i class="material-symbols-outlined">south</i>
                                 <span>Our approach</span>
