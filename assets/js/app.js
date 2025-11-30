@@ -283,8 +283,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Paint visited countries
   visitedCountries.forEach(function (code) {
-    if (countryShapes[code]) {
-      countryShapes[code].forEach(function (shape) {
+    var shapes = countryShapes[code];
+    if (shapes) {
+      var polygons = Array.isArray(shapes[0] && shapes[0][0]) ? shapes : [shapes];
+      polygons.forEach(function (shape) {
         L.polygon(shape, {
           color: visitedFillColor,
           fillColor: visitedFillColor,
