@@ -626,3 +626,40 @@ body[data-theme="dark"] .uni-studio-footer .footer-bottom-rule {
 
 /* Ensure Kimberly tiles are visible on hover (inherit global animation) */
 .page-experience .xp-card.xp-kimberly:hover .xp-mosaic .xp-tile { opacity: 1 !important; transform: translateY(0) !important; }
+/* === HERO INTRO: circular headshot with wrapped text =================== */
+.hero-intro {
+  max-width: 1100px;
+  margin: 32px auto 0;
+}
+
+.hero-intro .hero-headshot {
+  float: right;
+  width: clamp(180px, 28vw, 360px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  /* make text wrap to the true circle */
+  shape-outside: circle(50%);
+  -webkit-shape-outside: circle(50%);
+  margin: 0 0 1rem 2rem; /* space to the left & bottom of the image */
+  box-shadow: 0 10px 40px rgba(0,0,0,.25);
+  border: 2px solid rgba(255,255,255,.12);
+}
+
+/* Slightly tighter leading for hero copy */
+.hero-intro h1 { line-height: 1.05; }
+.hero-intro p  { line-height: 1.6; }
+
+/* Stack the headshot nicely on small screens */
+@media (max-width: 960px) {
+  .hero-intro .hero-headshot {
+    float: none;
+    display: block;
+    margin: 0 auto 16px;
+    width: 200px;
+    shape-outside: none;
+    -webkit-shape-outside: auto;
+  }
+  .hero-intro { margin-top: 12px; }
+  .hero-intro h1 { text-align: center; }
+}
