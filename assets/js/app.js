@@ -16,7 +16,6 @@ var cityData = [
   { id: "philadelphia-us",         name: "Philadelphia, USA",            status: "visited", lat: 39.9526, lng: -75.1652, image: "assets/images/cities/philadelphia-us.jpg",         caption: "" },
   { id: "new-haven-us",            name: "New Haven, USA",               status: "visited", lat: 41.3083, lng: -72.9279, image: "assets/images/cities/new-haven-us.jpg",            caption: "" },
   { id: "hanover-us",              name: "Hanover, USA",                 status: "visited", lat: 43.7022, lng: -72.2895, image: "assets/images/cities/hanover-us.jpg",              caption: "" },
-  { id: "mercer-us",               name: "Mercer, USA",                  status: "visited", lat: 47.5707, lng: -122.2221, image: "assets/images/cities/mercer-us.jpg",               caption: "" }, // Mercer Island, WA as placeholder
   { id: "san-diego-us",            name: "San Diego, USA",               status: "visited", lat: 32.7157, lng: -117.1611, image: "assets/images/cities/san-diego-us.jpg",           caption: "" },
   { id: "san-francisco-us",        name: "San Francisco, USA",           status: "visited", lat: 37.7749, lng: -122.4194, image: "assets/images/cities/san-francisco-us.jpg",       caption: "" },
   { id: "vail-us",                 name: "Vail, USA",                    status: "visited", lat: 39.6403, lng: -106.3742, image: "assets/images/cities/vail-us.jpg",                caption: "" },
@@ -133,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var hoverImg = document.getElementById('city-hover-image');
   var hoverName = document.getElementById('city-hover-name');
   var hoverCaption = document.getElementById('city-hover-caption');
+  var cityList = document.querySelector('.city-list ul');
   var defaultImg = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="260"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%23c9d6ff"/><stop offset="1" stop-color="%238bacf7"/></linearGradient></defs><rect width="400" height="260" fill="url(%23g)"/></svg>';
 
   var validCities = cityData.filter(function (c) {
@@ -151,112 +151,28 @@ document.addEventListener('DOMContentLoaded', function () {
     c.status = "visited"; // force visited status
   });
 
-  // Simplified country shapes to tint visited countries (rough outlines)
-  var countryShapes = {
-    us: [
-      [
-        [49.38, -124.7], [47.0, -124.7], [45.0, -123.0], [41.0, -124.0], [39.0, -123.0],
-        [37.0, -122.0], [36.0, -120.0], [34.0, -118.0], [32.0, -117.0], [29.0, -114.0],
-        [27.0, -110.0], [25.5, -104.0], [25.5, -97.0], [26.0, -82.0], [30.0, -81.0],
-        [33.0, -80.0], [35.0, -75.0], [38.0, -74.0], [40.0, -73.0], [45.0, -70.0],
-        [47.0, -69.0], [48.8, -69.0], [49.38, -95.0], [49.38, -110.0], [49.38, -124.7]
-      ],
-      [
-        [55.0, -132.0], [57.0, -135.0], [59.0, -140.0], [60.0, -146.0], [62.0, -150.0],
-        [64.0, -154.0], [66.0, -152.0], [67.5, -150.0], [69.0, -142.0], [68.0, -136.0],
-        [66.0, -132.0], [62.0, -132.0], [58.0, -133.0], [55.0, -132.0]
-      ],
-      [
-        [18.0, -160.0], [19.5, -160.0], [21.0, -157.0], [22.5, -155.0], [22.5, -153.0],
-        [21.0, -152.0], [19.5, -154.0], [18.0, -156.0], [18.0, -160.0]
-      ]
-    ],
-    mx: [
-      [32.7, -117.0], [29.0, -114.0], [28.0, -111.0], [24.0, -109.0], [22.0, -105.0],
-      [19.0, -106.0], [17.0, -104.0], [15.0, -96.0], [14.5, -92.0], [17.8, -90.0],
-      [19.0, -87.0], [21.5, -87.0], [24.0, -97.0], [27.0, -99.0], [31.0, -106.0],
-      [32.7, -117.0]
-    ],
-    es: [
-      [36.0, -6.5], [36.8, -9.3], [43.0, -9.3], [43.8, -3.0], [43.8, 3.3], [41.0, 3.3],
-      [39.0, 2.0], [38.0, 0.0], [36.7, -1.5], [36.0, -6.5]
-    ],
-    au: [
-      [-10.7, 143.0], [-11.0, 136.0], [-15.0, 129.0], [-17.0, 122.0], [-22.0, 114.0],
-      [-33.0, 114.0], [-34.0, 118.0], [-35.0, 130.0], [-38.0, 140.0], [-34.0, 149.0],
-      [-28.0, 153.0], [-22.0, 152.0], [-16.0, 146.0], [-10.7, 143.0]
-    ],
-    my: [
-      [1.0, 103.5], [4.0, 103.0], [5.5, 103.0], [6.7, 101.0], [6.3, 99.6], [4.5, 99.8],
-      [2.0, 100.2], [1.0, 103.5]
-    ],
-    id: [
-      [-8.0, 95.0], [1.0, 97.0], [5.0, 100.0], [2.0, 104.0], [-3.0, 108.0], [-6.0, 112.0],
-      [-8.0, 118.0], [-5.0, 122.0], [-2.0, 128.0], [-4.0, 133.0], [0.0, 135.0], [2.0, 141.0],
-      [-9.0, 140.0], [-10.0, 135.0], [-9.0, 125.0], [-9.0, 115.0], [-8.0, 95.0]
-    ],
-    cn: [
-      [18.0, 109.0], [20.0, 107.0], [23.0, 104.0], [26.0, 100.0], [30.0, 98.0], [33.0, 94.0],
-      [36.0, 90.0], [40.0, 88.0], [43.0, 90.0], [47.0, 95.0], [49.0, 103.0], [50.0, 110.0],
-      [47.0, 117.0], [45.0, 124.0], [42.0, 128.0], [38.0, 130.0], [33.0, 131.0], [27.0, 124.0],
-      [24.0, 118.0], [22.0, 114.0], [20.0, 111.0], [18.0, 109.0]
-    ],
-    nz: [
-      [-34.4, 172.0], [-37.0, 174.0], [-38.5, 176.0], [-40.0, 176.5], [-41.3, 175.5],
-      [-42.5, 173.0], [-43.8, 171.0], [-44.5, 170.0], [-45.9, 168.0], [-46.6, 167.0],
-      [-47.5, 169.0], [-46.0, 170.5], [-44.0, 171.5], [-42.0, 172.5], [-40.0, 174.5],
-      [-38.5, 175.5], [-36.0, 175.5], [-34.4, 172.0]
-    ],
-    sg: [
-      [1.25, 103.6], [1.47, 103.6], [1.47, 104.0], [1.25, 104.0], [1.25, 103.6]
-    ],
-    jp: [
-      [45.5, 141.0], [43.5, 145.0], [41.5, 142.0], [39.5, 141.0], [37.5, 138.0], [35.5, 136.0],
-      [33.0, 135.0], [32.0, 132.0], [33.0, 130.0], [34.0, 129.0], [35.0, 131.0], [36.5, 134.0],
-      [37.0, 138.0], [38.0, 140.0], [40.0, 141.0], [42.0, 140.0], [43.5, 141.0], [45.5, 141.0]
-    ],
-    gb: [
-      [50.0, -5.0], [51.0, -6.0], [53.0, -6.0], [55.0, -5.0], [57.0, -4.0],
-      [58.0, -2.0], [57.5, 0.5], [55.5, 1.5], [53.0, 1.0], [51.0, 0.0], [50.0, -1.0], [50.0, -5.0]
-    ],
-    de: [
-      [47.3, 7.0], [48.0, 5.5], [49.5, 6.0], [50.5, 6.8], [51.5, 6.0], [52.5, 8.5],
-      [53.3, 9.5], [54.7, 8.5], [55.0, 10.0], [54.5, 12.0], [53.5, 14.0], [52.0, 14.8],
-      [50.5, 15.0], [48.8, 13.5], [47.3, 12.0], [47.3, 7.0]
-    ],
-    fr: [
-      [51.0, 2.5], [50.0, -1.0], [48.5, -4.5], [46.5, -3.5], [45.0, -1.0], [43.6, 3.0],
-      [42.5, 3.0], [43.4, 7.5], [44.5, 7.6], [46.5, 6.0], [48.0, 6.8], [49.5, 5.0], [51.0, 2.5]
-    ],
-    nl: [
-      [53.7, 3.4], [53.4, 4.0], [52.7, 4.7], [51.8, 4.7], [51.4, 3.3], [52.5, 3.3], [53.7, 3.4]
-    ],
-    cz: [
-      [51.0, 12.2], [50.5, 15.0], [49.5, 18.0], [48.6, 17.0], [48.6, 13.0], [50.0, 12.0], [51.0, 12.2]
-    ],
-    hr: [
-      [46.5, 13.5], [45.5, 13.5], [44.0, 14.0], [43.5, 15.5], [44.8, 16.4], [45.5, 17.5], [46.3, 16.0], [46.5, 13.5]
-    ],
-    gr: [
-      [41.5, 26.0], [40.5, 24.0], [39.0, 23.0], [38.0, 22.0], [37.0, 21.0], [36.5, 23.5],
-      [37.5, 24.5], [38.5, 26.0], [39.5, 26.5], [41.0, 27.0], [41.5, 26.0]
-    ],
-    tr: [
-      [42.0, 26.0], [41.0, 29.0], [40.0, 32.0], [39.0, 35.0], [37.0, 36.5], [36.0, 39.0],
-      [36.0, 41.5], [37.5, 44.0], [40.0, 44.5], [41.5, 42.0], [42.3, 38.0], [42.0, 34.0], [42.0, 26.0]
-    ],
-    it: [
-      [46.5, 6.7], [45.0, 7.0], [44.0, 9.0], [43.0, 10.5], [41.0, 12.0], [40.0, 14.5],
-      [39.0, 16.0], [38.0, 15.5], [37.0, 14.0], [38.0, 12.5], [39.0, 10.0], [40.5, 8.5],
-      [44.0, 8.0], [46.0, 9.0], [46.5, 6.7]
-    ],
-    ca: [
-      [70.0, -141.0], [68.0, -133.0], [66.0, -120.0], [63.0, -110.0], [61.0, -100.0],
-      [58.0, -95.0], [55.0, -90.0], [52.0, -85.0], [50.0, -80.0], [48.0, -74.0],
-      [46.0, -72.0], [46.0, -66.0], [49.0, -63.0], [52.0, -60.0], [56.0, -60.0],
-      [60.0, -70.0], [65.0, -80.0], [70.0, -90.0], [72.0, -110.0], [73.0, -125.0],
-      [71.0, -135.0], [70.0, -141.0]
-    ]
+  // Rough country bounding boxes to tint visited countries
+  var countryBounds = {
+    us: [[24.396308, -125.0], [49.384358, -66.885444]],
+    es: [[35.9, -9.3], [43.8, 3.3]],
+    mx: [[14.4, -118.4], [32.7, -86.7]],
+    au: [[-44.0, 112.9], [-10.7, 154.0]],
+    my: [[0.8, 99.6], [7.5, 119.3]],
+    id: [[-11.0, 95.0], [6.0, 141.0]],
+    cn: [[18.0, 73.0], [53.6, 135.0]],
+    nz: [[-47.5, 166.0], [-34.0, 179.0]],
+    sg: [[1.20, 103.6], [1.47, 104.1]],
+    jp: [[24.0, 123.0], [46.0, 146.0]],
+    gb: [[49.9, -8.6], [60.9, 1.8]],
+    de: [[47.2, 5.5], [55.1, 15.5]],
+    fr: [[41.0, -5.5], [51.2, 9.7]],
+    nl: [[50.7, 3.3], [53.7, 7.3]],
+    cz: [[48.5, 12.0], [51.1, 18.0]],
+    hr: [[42.3, 13.4], [46.6, 19.4]],
+    gr: [[34.6, 19.3], [41.8, 28.3]],
+    tr: [[35.8, 25.6], [42.3, 45.0]],
+    it: [[36.6, 6.6], [47.1, 18.5]],
+    ca: [[41.0, -141.0], [83.0, -52.0]]
   };
   var visitedFillColor = "#7fd1ae";
 
@@ -279,50 +195,60 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Paint visited countries
   visitedCountries.forEach(function (code) {
-    if (countryShapes[code]) {
-      countryShapes[code].forEach(function (shape) {
-        L.polygon(shape, {
-          color: visitedFillColor,
-          fillColor: visitedFillColor,
-          fillOpacity: 0.18,
-          weight: 1
-        }).addTo(map);
-      });
-    }
+    if (!countryBounds[code]) return;
+    L.rectangle(countryBounds[code], {
+      color: visitedFillColor,
+      fillColor: visitedFillColor,
+      fillOpacity: 0.2,
+      weight: 1
+    }).addTo(map);
   });
 
-  // Pins
   var markers = [];
   validCities.forEach(function (city) {
-    var marker = L.circleMarker([city.lat, city.lng], {
-      radius: 7,
-      color: "#ffffff",
-      weight: 2,
-      fillColor: "#ff7f50",
-      fillOpacity: 1,
-      className: "city-marker"
-    }).addTo(map);
-
-    var enlarge = function () {
-      marker.setStyle({ radius: 9, weight: 3 });
-    };
-    var reset = function () {
-      marker.setStyle({ radius: 7, weight: 2 });
-    };
+    var iconHtml = '<div class="city-marker"></div>';
+    var icon = L.divIcon({
+      html: iconHtml,
+      iconSize: [18, 18],
+      className: '' // use inner div for styling
+    });
+    var marker = L.marker([city.lat, city.lng], { icon: icon }).addTo(map);
 
     marker.on('mouseover', function () {
-      enlarge();
+      if (marker._icon && marker._icon.firstChild) {
+        marker._icon.firstChild.classList.add('is-hovered');
+      }
       showCard(city);
     });
     marker.on('mouseout', function () {
-      reset();
+      if (marker._icon && marker._icon.firstChild) {
+        marker._icon.firstChild.classList.remove('is-hovered');
+      }
       hideCard();
     });
     marker.on('click', function () {
-      enlarge();
       showCard(city);
     });
     markers.push(marker);
   });
 
+  // Populate the city list under the map
+  if (cityList) {
+    cityList.innerHTML = '';
+    validCities.forEach(function (city) {
+      var li = document.createElement('li');
+      li.dataset.cityId = city.id;
+      li.dataset.cityStatus = city.status || 'visited';
+      li.innerHTML = '<span>' + city.name + '</span><span class="city-status-dot"></span>';
+      li.addEventListener('mouseenter', function () {
+        showCard(city);
+      });
+      li.addEventListener('mouseleave', hideCard);
+      li.addEventListener('click', function () {
+        map.flyTo([city.lat, city.lng], 6, { duration: 0.6 });
+        showCard(city);
+      });
+      cityList.appendChild(li);
+    });
+  }
 });
