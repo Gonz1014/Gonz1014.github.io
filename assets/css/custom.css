@@ -237,7 +237,7 @@ body[data-theme="dark"] .uni-studio-footer .footer-bottom-rule {
 /* ---------- ICON SIZE (smaller & side-by-side) ---------- */
 :root {
   /* Smaller default so icons sit side-by-side on most screens */
-  --contact-icon-size: clamp(90px, 9vmin, 140px);
+  --contact-icon-size: clamp(50px, 6vmin, 62px);
 }
 
 @media (max-width: 600px) {
