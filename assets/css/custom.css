@@ -108,6 +108,21 @@ body[data-theme="dark"] .uni-studio-footer {
   transition: height 180ms ease, opacity 180ms ease;
 }
 
+/* ---------- SITE LOGO THEME COLOR (day/night) ---------- */
+/* Default/day mode: render logo as solid black (works for PNG/JPG/SVG in <img>) */
+.site-logo {
+  filter: brightness(0) saturate(100%) !important; /* force black */
+}
+
+/* Night/dark mode: flip to white */
+html.dark .site-logo,
+body.dark .site-logo,
+.dark .site-logo,
+html[data-theme="dark"] .site-logo,
+body[data-theme="dark"] .site-logo {
+  filter: invert(1) brightness(100%) !important; /* force white */
+}
+
 /* When navbar becomes sticky, reduce logo size to match the small GC */
 .uk-sticky .site-logo,
 .uni-header .uk-sticky .site-logo,
@@ -680,9 +695,17 @@ body[data-theme="dark"] .uni-studio-footer .footer-bottom-rule {
   -webkit-filter: saturate(1.2) !important;
 }
 
-/* Slightly tighter leading for hero copy */
-.hero-intro h1 { line-height: 1.05; }
-.hero-intro p  { line-height: 1.6; }
+/* HERO INTRO — Typographic sizing (bigger & responsive) */
+.hero-intro h1 {
+  line-height: 1.08;
+  /* scales with viewport, but stays readable on small/large screens */
+  font-size: clamp(32px, 4.8vw, 64px);
+}
+.hero-intro p  {
+  line-height: 1.66;
+  /* bump paragraph size so it's comfortably readable */
+  font-size: clamp(18px, 1.6vw, 24px);
+}
 
 /* Stack the headshot nicely on small screens */
 @media (max-width: 960px) {
