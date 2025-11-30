@@ -644,6 +644,8 @@ body[data-theme="dark"] .uni-studio-footer .footer-bottom-rule {
   margin: 0 0 1rem 2rem; /* space to the left & bottom of the image */
   box-shadow: 0 10px 40px rgba(0,0,0,.25);
   border: 2px solid rgba(255,255,255,.12);
+  filter: saturate(1.2) !important;
+  -webkit-filter: saturate(1.2) !important;
 }
 
 /* Slightly tighter leading for hero copy */
