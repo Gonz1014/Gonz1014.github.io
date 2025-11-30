@@ -98,13 +98,14 @@ var cityData = [
   { id: "hvar-hr",                 name: "Hvar, Croatia",                status: "visited", lat: 43.1727, lng: 16.4424,  image: "assets/images/cities/hvar-hr.jpg",                caption: "" },
   { id: "mykonos-gr",              name: "Mykonos, Greece",              status: "visited", lat: 37.4467, lng: 25.3289,  image: "assets/images/cities/mykonos-gr.jpg",             caption: "" },
   { id: "istanbul-tr",             name: "Istanbul, Turkey",             status: "visited", lat: 41.0082, lng: 28.9784,  image: "assets/images/cities/istanbul-tr.jpg",            caption: "" },
-  { id: "amalfi-coast-it",         name: "Amalfi Coast (Naples/Positano/Sorrento), Italy", status: "visited", lat: 40.6280, lng: 14.4867, image: "assets/images/cities/amalfi-coast-it.jpg", caption: "" },
+  { id: "naples-it",               name: "Naples, Italy",                status: "visited", lat: 40.8518, lng: 14.2681, image: "assets/images/cities/naples-it.jpg",               caption: "" },
+  { id: "positano-it",             name: "Positano, Italy",              status: "visited", lat: 40.6281, lng: 14.4845, image: "assets/images/cities/positano-it.jpg",             caption: "" },
+  { id: "sorrento-it",             name: "Sorrento, Italy",              status: "visited", lat: 40.6263, lng: 14.3758, image: "assets/images/cities/sorrento-it.jpg",             caption: "" },
   { id: "civitavecchia-it",        name: "Civitavecchia, Italy",         status: "visited", lat: 42.0930, lng: 11.7926, image: "assets/images/cities/civitavecchia-it.jpg",        caption: "" },
   { id: "pisa-it",                 name: "Pisa, Italy",                  status: "visited", lat: 43.7228, lng: 10.4017, image: "assets/images/cities/pisa-it.jpg",                 caption: "" },
   { id: "varese-it",               name: "Varese, Italy",                status: "visited", lat: 45.8200, lng: 8.8250,  image: "assets/images/cities/varese-it.jpg",               caption: "" },
   { id: "marseille-fr",            name: "Marseille, France",            status: "visited", lat: 43.2965, lng: 5.3698,  image: "assets/images/cities/marseille-fr.jpg",            caption: "" },
   { id: "palermo-it",              name: "Palermo, Italy",               status: "visited", lat: 38.1157, lng: 13.3615, image: "assets/images/cities/palermo-it.jpg",              caption: "" },
-  { id: "cagliari-it",             name: "Cagliari, Italy",              status: "visited", lat: 39.2238, lng: 9.1217,  image: "assets/images/cities/cagliari-it.jpg",             caption: "" },
 
   // Canada
   { id: "toronto-ca",              name: "Toronto, Canada",              status: "visited", lat: 43.6532, lng: -79.3832, image: "assets/images/cities/toronto-ca.jpg",              caption: "" }
