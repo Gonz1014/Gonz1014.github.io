@@ -173,9 +173,9 @@ document.addEventListener('DOMContentLoaded', function () {
     return 'notyet';
   }
 
-  // Colors that look great on a dark basemap
-  var FILL = { lived: '#f5b301', visited: '#ff9900', notyet: '#1a1a1a' };
-  var STROKE = { lived: '#d39b00', visited: '#e08a00', notyet: '#2a2a2a' };
+  // Colors on dark basemap (match legend: lived = orange, visited = green)
+  var FILL =   { lived: '#f5b301', visited: '#7fd1ae', notyet: 'transparent' };
+  var STROKE = { lived: '#d39b00', visited: '#6bb99a', notyet: '#2a2a2a' };
 
   function countryStyle(feature) {
     var iso = (feature.properties.ISO_A2 || feature.properties.iso_a2 || feature.properties.ISO2 || '').toLowerCase();
@@ -183,9 +183,9 @@ document.addEventListener('DOMContentLoaded', function () {
     return {
       pane: 'countries-fill',
       fillColor: FILL[status],
-      fillOpacity: status === 'notyet' ? 0.08 : 0.42,
+      fillOpacity: status === 'notyet' ? 0 : 0.45,
       color: STROKE[status],
-      weight: status === 'notyet' ? 0.5 : 1,
+      weight: status === 'notyet' ? 0.6 : 1,
       opacity: 1
     };
   }
@@ -215,6 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
         onEachFeature: onEachCountry,
         pane: 'countries-fill'
       }).addTo(map);
+      countriesLayer.bringToBack();
     })
     .catch(function (err) {
       console.warn('Countries GeoJSON not found. Add assets/data/world-countries-simplified.geojson', err);
@@ -252,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
   validCities.forEach(function (city) {
     // Custom circular pin (uses CSS to be visible)
     var icon = L.divIcon({
-      html: '<div class="city-pin"></div>',
+      html: '<div class="city-pin city-pin--' + (city.status || 'visited') + '"></div>',
       className: 'leaflet-div-icon city-pin-wrapper',
       iconSize: [18, 18],
       iconAnchor: [9, 9]
