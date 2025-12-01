@@ -203,6 +203,13 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   stroke: currentColor !important;
 }
 
+/* Preserve color for Leaflet map tiles and hover images on About */
+#about-map img,
+#world-map img,
+.leaflet-container img {
+  filter: none !important;
+}
+
 /* ---------- CONTACT LINKS ROW ---------- */
 .contact-links {
   display: flex;
