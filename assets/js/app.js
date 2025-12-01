@@ -237,18 +237,24 @@ document.addEventListener('DOMContentLoaded', function () {
     hoverCard.style.display = 'block';
     hoverName.textContent = city.name;
     hoverCaption.textContent = city.caption || '';
-    if (hoverImg) {
-      hoverImg.onerror = function () {
-        this.onerror = null;
-        this.src = defaultImg;
-        this.style.background = 'linear-gradient(135deg, #c9d6ff, #8bacf7)';
+
+    var targetSrc = city.image || '';
+    var applyImage = function (src, useGradientBg) {
+      hoverImg.src = src;
+      hoverImg.style.background = useGradientBg ? 'linear-gradient(135deg, #c9d6ff, #8bacf7)' : 'none';
+    };
+
+    if (targetSrc) {
+      var tester = new Image();
+      tester.onload = function () {
+        applyImage(targetSrc + '?v=1', false);
       };
-    }
-    hoverImg.src = city.image || defaultImg;
-    if (!city.image) {
-      hoverImg.style.background = 'linear-gradient(135deg, #c9d6ff, #8bacf7)';
+      tester.onerror = function () {
+        applyImage(defaultImg, true);
+      };
+      tester.src = targetSrc + '?v=1';
     } else {
-      hoverImg.style.background = 'none';
+      applyImage(defaultImg, true);
     }
   };
 
