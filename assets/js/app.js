@@ -472,6 +472,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   var markers = [];
+  var activeFilters = new Set(['lived', 'visited']);
   var renderedCities = [];
   validCities.forEach(function (city) {
     var _iso = normalizeIso(countryFromId(city.id));
@@ -501,7 +502,7 @@ document.addEventListener('DOMContentLoaded', function () {
     marker.on('mouseover', function () { enlarge(); showCard(city); });
     marker.on('mouseout', function () { reset(); hideCard(); });
     marker.on('click', function () { enlarge(); showCard(city); });
-    markers.push(marker);
+    markers.push({ marker: marker, city: city });
     renderedCities.push(city);
   });
 
@@ -523,5 +524,40 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       cityList.appendChild(li);
     });
+  }
+
+  // Filter pins and list items based on checkboxes
+  var applyFilters = function () {
+    markers.forEach(function (entry) {
+      var show = activeFilters.has(entry.city.pinStatus);
+      if (show) {
+        if (!map.hasLayer(entry.marker)) entry.marker.addTo(map);
+      } else if (map.hasLayer(entry.marker)) {
+        map.removeLayer(entry.marker);
+      }
+    });
+    if (cityList) {
+      Array.prototype.forEach.call(cityList.children, function (li) {
+        var status = li.dataset.cityStatus;
+        li.style.display = activeFilters.has(status) ? '' : 'none';
+      });
+    }
+  };
+
+  var filterBoxes = document.querySelectorAll('[data-city-filter]');
+  if (filterBoxes.length) {
+    filterBoxes.forEach(function (box) {
+      box.addEventListener('change', function () {
+        activeFilters.clear();
+        filterBoxes.forEach(function (b) {
+          if (b.checked) {
+            var val = b.getAttribute('data-city-filter');
+            if (val) activeFilters.add(val);
+          }
+        });
+        applyFilters();
+      });
+    });
+    applyFilters();
   }
 });
