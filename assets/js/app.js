@@ -406,9 +406,13 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (targetSrc) {
-      var bust = 'v=' + Date.now();
-      var sep = targetSrc.indexOf('?') === -1 ? '?' : '&';
-      applyImage(targetSrc + sep + bust, false);
+      try {
+        var resolved = new URL(targetSrc, window.location.href).href;
+        applyImage(resolved, false);
+      } catch (err) {
+        console.warn('Bad image URL for city:', city.name, targetSrc, err);
+        applyImage(defaultImg, true);
+      }
     } else {
       applyImage(defaultImg, true);
     }
