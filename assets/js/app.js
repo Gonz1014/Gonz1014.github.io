@@ -141,6 +141,30 @@ document.addEventListener('DOMContentLoaded', function () {
   var validCities = cityData.filter(function (c) {
     return typeof c.lat === 'number' && typeof c.lng === 'number';
   });
+  // Preload images and track success/failure
+  var imageCache = new Map(); // key: original path, value: {status:'ok'|'error', url:string}
+  var resolveUrl = function (path) {
+    try {
+      return new URL(path, window.location.href).href;
+    } catch (e) {
+      console.warn('Bad image path', path, e);
+      return null;
+    }
+  };
+  Array.from(new Set(validCities.map(function (c) { return c.image; }).filter(Boolean))).forEach(function (path) {
+    var resolved = resolveUrl(path);
+    if (!resolved) {
+      imageCache.set(path, { status: 'error', url: '' });
+      return;
+    }
+    var img = new Image();
+    img.onload = function () { imageCache.set(path, { status: 'ok', url: resolved }); };
+    img.onerror = function (e) {
+      console.warn('Image preload failed:', resolved, e);
+      imageCache.set(path, { status: 'error', url: '' });
+    };
+    img.src = resolved;
+  });
 
   // Determine visited countries from IDs (expects "-xx" country code at end)
   var countryFromId = function (id) {
@@ -406,12 +430,16 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (targetSrc) {
-      try {
-        var resolved = new URL(targetSrc, window.location.href).href;
-        applyImage(resolved, false);
-      } catch (err) {
-        console.warn('Bad image URL for city:', city.name, targetSrc, err);
-        applyImage(defaultImg, true);
+      var cached = imageCache.get(targetSrc);
+      if (cached && cached.status === 'ok') {
+        applyImage(cached.url, false);
+      } else {
+        var resolved = resolveUrl(targetSrc);
+        if (resolved) {
+          applyImage(resolved, false);
+        } else {
+          applyImage(defaultImg, true);
+        }
       }
     } else {
       applyImage(defaultImg, true);
