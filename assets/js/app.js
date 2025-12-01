@@ -384,10 +384,7 @@ document.addEventListener('DOMContentLoaded', function () {
       countriesLayer = L.geoJSON(geo, {
         style: countryStyle,
         onEachFeature: onEachCountry,
-        pane: 'countries-fill',
-        filter: function (feature) {
-          return !!statusForIso(isoFromFeature(feature.properties));
-        }
+        pane: 'countries-fill'
       }).addTo(map);
       countriesLayer.bringToBack();
 
