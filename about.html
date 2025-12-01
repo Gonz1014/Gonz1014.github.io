@@ -107,7 +107,6 @@
     /* Pin color variants by status */
     .city-pin.city-pin--visited { background: #a3cfd0; }  /* aqua */
     .city-pin.city-pin--lived   { background: #355572; }  /* dark blue */
-    .city-pin.city-pin--notyet  { background: #000000; }  /* black (rarely used) */
 
     .city-pin.is-hovered {
         transform: scale(1.4);
@@ -166,15 +165,11 @@
     }
 
     .about-legend-swatch.lived {
-        background: #ffb347; /* replace with your brand color later */
+        background: #355572; /* match lived country fill */
     }
 
     .about-legend-swatch.visited {
-        background: #7fd1ae;
-    }
-
-    .about-legend-swatch.not-yet {
-        background: #e2e2e2;
+        background: #a3cfd0; /* match visited country fill */
     }
 
     @media (max-width: 959px) {
@@ -307,10 +302,6 @@
                                                 <li class="about-legend-item">
                                                     <span class="about-legend-swatch visited"></span>
                                                     <span>Visited</span>
-                                                </li>
-                                                <li class="about-legend-item">
-                                                    <span class="about-legend-swatch not-yet"></span>
-                                                    <span>Not yet</span>
                                                 </li>
                                             </ul>
                                         </div>

@@ -321,23 +321,34 @@ document.addEventListener('DOMContentLoaded', function () {
   // Determine status for an ISO-2 code (normalized) using lived + visited + manual
   function statusForIso(iso) {
     iso = normalizeIso(iso);
-    if (!iso) return 'notyet';
+    if (!iso) return null;
     if (livedCountries.has(iso)) return 'lived';
     if (visitedCountries.has(iso) || visitedCountriesManual.has(iso)) return 'visited';
-    return 'notyet';
+    return null;
   }
 
-  // Palette: visited = aqua, lived = dark blue, not-yet = black
-  var FILL =   { lived: '#355572', visited: '#a3cfd0', notyet: '#000000' };
-  var STROKE = { lived: '#273f55', visited: '#7a9b9c', notyet: '#2a2a2a' };
+  // Palette: visited = aqua, lived = dark blue
+  var FILL =   { lived: '#355572', visited: '#a3cfd0' };
+  var STROKE = { lived: '#273f55', visited: '#7a9b9c' };
 
   function countryStyle(feature) {
     var iso = isoFromFeature(feature.properties);
     var status = statusForIso(iso);
+    if (!status) {
+      return {
+        pane: 'countries-fill',
+        fillColor: '#000000',
+        fillOpacity: 0,
+        color: 'transparent',
+        weight: 0,
+        opacity: 0,
+        interactive: false
+      };
+    }
     return {
       pane: 'countries-fill',
       fillColor: FILL[status],
-      fillOpacity: status === 'notyet' ? 0.85 : 0.65,
+      fillOpacity: 0.65,
       color: STROKE[status],
       weight: 1,
       opacity: 1
@@ -367,7 +378,10 @@ document.addEventListener('DOMContentLoaded', function () {
       countriesLayer = L.geoJSON(geo, {
         style: countryStyle,
         onEachFeature: onEachCountry,
-        pane: 'countries-fill'
+        pane: 'countries-fill',
+        filter: function (feature) {
+          return !!statusForIso(isoFromFeature(feature.properties));
+        }
       }).addTo(map);
       countriesLayer.bringToBack();
 
@@ -452,11 +466,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   var markers = [];
+  var renderedCities = [];
   validCities.forEach(function (city) {
     var _iso = normalizeIso(countryFromId(city.id));
     var computedCountryStatus = statusForIso(_iso);
     var pinStatus = (city.status === 'lived' || computedCountryStatus === 'lived') ? 'lived'
-                   : (computedCountryStatus === 'visited' ? 'visited' : 'notyet');
+                   : ((city.status === 'visited' || computedCountryStatus === 'visited') ? 'visited' : null);
+    if (!pinStatus) return;
+    city.pinStatus = pinStatus;
     // Custom circular pin (uses CSS to be visible)
     var icon = L.divIcon({
       html: '<div class="city-pin city-pin--' + pinStatus + '"></div>',
@@ -479,15 +496,16 @@ document.addEventListener('DOMContentLoaded', function () {
     marker.on('mouseout', function () { reset(); hideCard(); });
     marker.on('click', function () { enlarge(); showCard(city); });
     markers.push(marker);
+    renderedCities.push(city);
   });
 
   // Populate the city list under the map
   if (cityList) {
     cityList.innerHTML = '';
-    validCities.forEach(function (city) {
+    renderedCities.forEach(function (city) {
       var li = document.createElement('li');
       li.dataset.cityId = city.id;
-      li.dataset.cityStatus = city.status || 'visited';
+      li.dataset.cityStatus = city.pinStatus || 'visited';
       li.innerHTML = '<span>' + city.name + '</span><span class="city-status-dot"></span>';
       li.addEventListener('mouseenter', function () {
         showCard(city);
