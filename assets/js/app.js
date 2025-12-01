@@ -161,6 +161,128 @@ document.addEventListener('DOMContentLoaded', function () {
     if (code) visitedCountries.add(code);
     c.status = "visited"; // keep city pin default unless overridden
   });
+  // Optional: manually mark additional visited countries by ISO-2, lowercase
+  var visitedCountriesManual = new Set([
+    // e.g., 'es','fr','it'
+  ]);
+  
+  // Fallback map from ISO-3 to ISO-2 for common datasets (Natural Earth)
+  var A3_TO_A2 = {
+    USA:'us', MEX:'mx', CAN:'ca',
+    ESP:'es', FRA:'fr', ITA:'it', DEU:'de', NLD:'nl', BEL:'be', LUX:'lu',
+    PRT:'pt', IRL:'ie', GBR:'gb', ISL:'is', NOR:'no', SWE:'se', FIN:'fi', DNK:'dk',
+    CHE:'ch', AUT:'at', POL:'pl', CZE:'cz', SVK:'sk', HUN:'hu', SVN:'si', HRV:'hr',
+    BIH:'ba', SRB:'rs', MNE:'me', MKD:'mk', ALB:'al', BGR:'bg', ROU:'ro',
+    GRC:'gr', TUR:'tr', AND:'ad', MCO:'mc', SMR:'sm', VAT:'va', MLT:'mt',
+    NLD:'nl', LIE:'li',
+    ESP:'es',
+    RUS:'ru', UKR:'ua', BLR:'by', LTU:'lt', LVA:'lv', EST:'ee',
+    MAR:'ma', DZA:'dz', TUN:'tn',
+    EGY:'eg',
+    ZAF:'za',
+    AUS:'au', NZL:'nz',
+    CHN:'cn', JPN:'jp', KOR:'kr', PRK:'kp',
+    SGP:'sg', MYS:'my', IDN:'id', THA:'th', VNM:'vn', KHM:'kh', LAO:'la', PHL:'ph',
+    IND:'in', PAK:'pk', BGD:'bd', LKA:'lk', NPL:'np',
+    XKX:'xk' // Kosovo in some datasets
+  };
+  
+  // Optional name-to-ISO2 fallback for edge GeoJSONs
+  var NAME_TO_A2 = {
+    'united states':'us',
+    'united states of america':'us',
+    'mexico':'mx',
+    'canada':'ca',
+    'spain':'es',
+    'france':'fr',
+    'italy':'it',
+    'germany':'de',
+    'netherlands':'nl',
+    'belgium':'be',
+    'luxembourg':'lu',
+    'portugal':'pt',
+    'ireland':'ie',
+    'united kingdom':'gb',
+    'england':'gb',
+    'scotland':'gb',
+    'wales':'gb',
+    'isle of man':'im',
+    'iceland':'is',
+    'norway':'no',
+    'sweden':'se',
+    'finland':'fi',
+    'denmark':'dk',
+    'switzerland':'ch',
+    'austria':'at',
+    'poland':'pl',
+    'czechia':'cz',
+    'czech republic':'cz',
+    'slovakia':'sk',
+    'hungary':'hu',
+    'slovenia':'si',
+    'croatia':'hr',
+    'bosnia and herzegovina':'ba',
+    'serbia':'rs',
+    'montenegro':'me',
+    'north macedonia':'mk',
+    'albania':'al',
+    'bulgaria':'bg',
+    'romania':'ro',
+    'greece':'gr',
+    'turkey':'tr',
+    'andorra':'ad',
+    'monaco':'mc',
+    'san marino':'sm',
+    'vatican':'va',
+    'malta':'mt',
+    'russia':'ru',
+    'ukraine':'ua',
+    'belarus':'by',
+    'lithuania':'lt',
+    'latvia':'lv',
+    'estonia':'ee',
+    'morocco':'ma',
+    'algeria':'dz',
+    'tunisia':'tn',
+    'egypt':'eg',
+    'south africa':'za',
+    'australia':'au',
+    'new zealand':'nz',
+    'china':'cn',
+    'japan':'jp',
+    'singapore':'sg',
+    'malaysia':'my',
+    'indonesia':'id',
+    'thailand':'th',
+    'vietnam':'vn',
+    'cambodia':'kh',
+    'laos':'la',
+    'philippines':'ph',
+    'india':'in',
+    'pakistan':'pk',
+    'bangladesh':'bd',
+    'sri lanka':'lk',
+    'nepal':'np',
+    'kosovo':'xk'
+  };
+  
+  // Extract ISO-2 from a GeoJSON feature's properties (robust across schemas)
+  function isoFromFeature(props) {
+    if (!props) return null;
+    // Try direct ISO-2 fields
+    var iso2 = props.ISO_A2 || props.iso_a2 || props.ISO2 || props.WB_A2 || props.wb_a2 || '';
+    if (iso2 && iso2 !== '-99') return normalizeIso(iso2);
+    // Try ISO-3 then map
+    var iso3 = props.ISO_A3 || props.ADM0_A3 || props.iso_a3 || props.adm0_a3 || props.WB_A3 || props.wb_a3 || '';
+    if (iso3 && iso3 !== '-99') {
+      var m = A3_TO_A2[String(iso3).toUpperCase()];
+      if (m) return normalizeIso(m);
+    }
+    // Try by name as last resort
+    var name = (props.NAME_EN || props.ADMIN || props.name || '').toLowerCase();
+    if (name && NAME_TO_A2[name]) return normalizeIso(NAME_TO_A2[name]);
+    return null;
+  }
   // --- Country fills layer (GeoJSON) ---
   // Create panes so country fills sit UNDER markers
   map.createPane('countries-fill');
@@ -172,12 +294,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // e.g., 'us', 'au'
   ]);
 
-  // Determine status for an ISO-2 code
+  // Determine status for an ISO-2 code (normalized) using lived + visited + manual
   function statusForIso(iso) {
     iso = normalizeIso(iso);
     if (!iso) return 'notyet';
     if (livedCountries.has(iso)) return 'lived';
-    if (visitedCountries.has(iso)) return 'visited';
+    if (visitedCountries.has(iso) || visitedCountriesManual.has(iso)) return 'visited';
     return 'notyet';
   }
 
@@ -186,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var STROKE = { lived: '#273f55', visited: '#7a9b9c', notyet: '#2a2a2a' };
 
   function countryStyle(feature) {
-    var iso = (feature.properties.ISO_A2 || feature.properties.iso_a2 || feature.properties.ISO2 || '').toLowerCase();
+    var iso = isoFromFeature(feature.properties);
     var status = statusForIso(iso);
     return {
       pane: 'countries-fill',
