@@ -1,5 +1,22 @@
 /* Add your own custom css here */
 
+/* ---------- GLOBAL SCALE (desktop) ---------- */
+:root {
+  --site-scale: 0.8;          /* 80% of current size */
+  --site-scale-inverse: 1.25; /* keeps map area at 100% */
+}
+
+@media (min-width: 960px) {
+  body {
+    zoom: var(--site-scale, 0.8);
+  }
+
+  /* Keep About page map section at original size */
+  #about-map {
+    zoom: var(--site-scale-inverse, 1.25);
+  }
+}
+
 /* ---------- CONTACT / FOOTER (uni-studio-footer) ---------- */
 /* Light mode (footer has dark bg): force WHITE text */
 .uni-studio-footer { 
