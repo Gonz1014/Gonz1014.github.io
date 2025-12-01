@@ -294,10 +294,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function isoFromFeature(props) {
     if (!props) return null;
     // Try direct ISO-2 fields
-    var iso2 = props.ISO_A2 || props.iso_a2 || props.ISO2 || props.WB_A2 || props.wb_a2 || '';
+    var iso2 = props.ISO_A2 || props.iso_a2 || props.ISO2 || props.WB_A2 || props.wb_a2
+             || props['ISO3166-1-Alpha-2'] || props['iso3166-1-alpha-2'] || '';
     if (iso2 && iso2 !== '-99') return normalizeIso(iso2);
     // Try ISO-3 then map
-    var iso3 = props.ISO_A3 || props.ADM0_A3 || props.iso_a3 || props.adm0_a3 || props.WB_A3 || props.wb_a3 || '';
+    var iso3 = props.ISO_A3 || props.ADM0_A3 || props.iso_a3 || props.adm0_a3 || props.WB_A3 || props.wb_a3
+             || props['ISO3166-1-Alpha-3'] || props['iso3166-1-alpha-3'] || '';
     if (iso3 && iso3 !== '-99') {
       var m = A3_TO_A2[String(iso3).toUpperCase()];
       if (m) return normalizeIso(m);
