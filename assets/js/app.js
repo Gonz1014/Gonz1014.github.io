@@ -10,8 +10,8 @@ var cityData = [
   { id: "ibiza-es",                name: "Ibiza, Spain",                 status: "visited", lat: 38.9067, lng: 1.4206,  image: "assets/images/cities/ibiza-es.jpg",                caption: "" },
 
   // United States
-  { id: "miami-us",                name: "Miami, USA",                   status: "visited", lat: 25.7617, lng: -80.1918, image: "assets/images/cities/miami-us.jpg",                caption: "" },
-  { id: "new-york-us",             name: "New York, USA",                status: "visited", lat: 40.7128, lng: -74.0060, image: "assets/images/cities/new-york-us.jpg",             caption: "" },
+  { id: "miami-us",                name: "Miami, USA",                   status: "lived",   lat: 25.7617, lng: -80.1918, image: "assets/images/cities/miami-us.jpg",                caption: "" },
+  { id: "new-york-us",             name: "New York, USA",                status: "lived",   lat: 40.7128, lng: -74.0060, image: "assets/images/cities/new-york-us.jpg",             caption: "" },
   { id: "boston-us",               name: "Boston, USA",                  status: "visited", lat: 42.3601, lng: -71.0589, image: "assets/images/cities/boston-us.jpg",               caption: "" },
   { id: "philadelphia-us",         name: "Philadelphia, USA",            status: "visited", lat: 39.9526, lng: -75.1652, image: "assets/images/cities/philadelphia-us.jpg",         caption: "" },
   { id: "new-haven-us",            name: "New Haven, USA",               status: "visited", lat: 41.3083, lng: -72.9279, image: "assets/images/cities/new-haven-us.jpg",            caption: "" },
@@ -31,7 +31,7 @@ var cityData = [
   { id: "cancun-mx",               name: "Cancún, Mexico",               status: "visited", lat: 21.1619, lng: -86.8515, image: "assets/images/cities/cancun-mx.jpg",               caption: "" },
   { id: "oaxaca-mx",               name: "Oaxaca, Mexico",               status: "visited", lat: 17.0732, lng: -96.7266, image: "assets/images/cities/oaxaca-mx.jpg",               caption: "" },
   { id: "bacalar-mx",              name: "Bacalar, Mexico",              status: "visited", lat: 18.6772, lng: -88.3923, image: "assets/images/cities/bacalar-mx.jpg",              caption: "" },
-  { id: "mexico-city-mx",          name: "Ciudad de México, Mexico",     status: "visited", lat: 19.4326, lng: -99.1332, image: "assets/images/cities/mexico-city-mx.jpg",          caption: "" },
+  { id: "mexico-city-mx",          name: "Ciudad de México, Mexico",     status: "lived",   lat: 19.4326, lng: -99.1332, image: "assets/images/cities/mexico-city-mx.jpg",          caption: "" },
   { id: "merida-mx",               name: "Mérida, Mexico",               status: "visited", lat: 20.9674, lng: -89.5926, image: "assets/images/cities/merida-mx.jpg",               caption: "" },
   { id: "monterrey-mx",            name: "Monterrey, Mexico",            status: "visited", lat: 25.6866, lng: -100.3161, image: "assets/images/cities/monterrey-mx.jpg",           caption: "" },
   { id: "puerto-vallarta-mx",      name: "Puerto Vallarta, Mexico",      status: "visited", lat: 20.6534, lng: -105.2253, image: "assets/images/cities/puerto-vallarta-mx.jpg",      caption: "" },
@@ -40,7 +40,7 @@ var cityData = [
   { id: "acapulco-mx",             name: "Acapulco, Mexico",             status: "visited", lat: 16.8531, lng: -99.8237, image: "assets/images/cities/acapulco-mx.jpg",             caption: "" },
 
   // Australia
-  { id: "sydney-au",               name: "Sydney, Australia",            status: "visited", lat: -33.8688, lng: 151.2093, image: "assets/images/cities/sydney-au.jpg",               caption: "" },
+  { id: "sydney-au",               name: "Sydney, Australia",            status: "lived",   lat: -33.8688, lng: 151.2093, image: "assets/images/cities/sydney-au.jpg",               caption: "" },
   { id: "melbourne-au",            name: "Melbourne, Australia",         status: "visited", lat: -37.8136, lng: 144.9631, image: "assets/images/cities/melbourne-au.jpg",            caption: "" },
   { id: "hamilton-island-au",      name: "Hamilton Island, Australia",   status: "visited", lat: -20.3489, lng: 148.9568, image: "assets/images/cities/hamilton-island-au.jpg",      caption: "" },
   { id: "blue-mountains-au",       name: "Blue Mountains, Australia",    status: "visited", lat: -33.7000, lng: 150.3000, image: "assets/images/cities/blue-mountains-au.jpg",       caption: "" },
@@ -186,7 +186,8 @@ document.addEventListener('DOMContentLoaded', function () {
   validCities.forEach(function (c) {
     var code = normalizeIso(countryFromId(c.id));
     if (code) visitedCountries.add(code);
-    c.status = "visited"; // keep city pin default unless overridden
+    // Default to visited when no explicit status was set in the data
+    if (c.status !== "visited" && c.status !== "lived") c.status = "visited";
   });
   // Optional: manually mark additional visited countries by ISO-2, lowercase
   var visitedCountriesManual = new Set([
