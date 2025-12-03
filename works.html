@@ -267,11 +267,12 @@
                       <div>
                         <h3 class="uk-h1">Java Blackjack &amp; Video Poker</h3>
                         <p class="uk-text-meta uk-margin-small">Software Engineering</p>
-                        <p>Console and GUI games with robust rulesets, bankroll tracking, and probability-aware hints.</p>
+                        <p>Console-to-GUI overhaul of my Java card games, rebuilt into reusable engines and a polished desktop app.</p>
                         <ul class="uk-list uk-list-bullet">
-                          <li>Encapsulated game logic and deck state with clean OOP patterns.</li>
-                          <li>Implemented pay tables, split/double rules, and dealer AI.</li>
-                          <li>Added save/resume and analytics on win rates per strategy.</li>
+                          <li>The original was a super-simple Intro to Java final project console poker variant (no true Jacks-or-Better rules, clunky text I/O), so gameplay felt limited and the code wasn’t structured for reuse.</li>
+                          <li>I wanted to push project into something I’d actually play and showcase, apply real OOP and ship a desktop UI.</li>
+                          <li>I refactored into reusable engines (Card, Deck, HandEvaluator, PayTable), upgraded to true Jacks-or-Better with correct payouts, then added Blackjack via a compact turn/state machine and dealer logic.</li>
+                          <li>I disliked the terminal experience, so I kept the core UI-agnostic and taught myself JavaFX to build a clean GUI (tokens/bets, hit/stand/double, draw/hold, action log); that process cemented MVC separation, deterministic state flow, and robust edge-case handling (ace 1/11, naturals, reshuffle), turning it into a polished, playable app.</li>
                         </ul>
                       </div>
                     </div>
