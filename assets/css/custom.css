@@ -738,7 +738,8 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
 .page-projects .project-modal { padding: clamp(16px, 3vw, 32px) !important; }
 .page-projects .project-modal .uk-modal-dialog {
   background: #ffffff;
-  max-width: min(1280px, 96vw);
+  width: 96vw;
+  max-width: 1440px;
 }
 .dark .page-projects .project-modal .uk-modal-dialog { background: #0c0c0f; }
 .page-projects .project-modal .swiper {
