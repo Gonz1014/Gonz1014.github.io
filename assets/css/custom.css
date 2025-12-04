@@ -697,7 +697,11 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   isolation: isolate;
   min-height: clamp(280px, 32vw, 400px);
   aspect-ratio: 1 / 1;
-  background: transparent;
+  background: var(--xp-img-bg, transparent);
+  background-image: var(--xp-img, none);
+  background-size: var(--xp-img-size, cover);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .page-projects .xp-card.uk-card-body { padding: 0 !important; }
 .page-projects .xp-card.uk-card,
