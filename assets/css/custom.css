@@ -729,6 +729,9 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
 .page-projects .xp-card > a.uk-position-cover { z-index: 3; }
 /* Ensure any leftover mosaic markup stays hidden on projects */
 .page-projects .xp-mosaic { display: none !important; }
+/* Keep project images/videos in full color */
+.page-projects img,
+.page-projects video { filter: none !important; }
 @media (prefers-reduced-motion: reduce) {
   .page-projects .xp-card::before,
   .page-projects .xp-card::after { transition: none; }
@@ -766,6 +769,7 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   height: 100%;
   object-fit: contain;
   background: inherit;
+  filter: none !important;
 }
 .page-projects .project-modal .swiper-button-prev,
 .page-projects .project-modal .swiper-button-next {

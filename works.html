@@ -272,6 +272,7 @@
                     <div class="project-modal-text uk-flex uk-flex-column uk-flex-between">
                       <div>
                         <h3 class="uk-h1">Java Blackjack &amp; Video Poker</h3>
+                        <p class="uk-text-meta uk-margin-small">Software Engineering</p>
                         <ul class="uk-list uk-list-bullet">
                           <li>The original was a super-simple Intro to Java final project console poker variant (no true Jacks-or-Better rules, clunky text I/O), so gameplay felt limited and the code wasn’t structured for reuse.</li>
                           <li>I wanted to push project into something I’d actually play and showcase, apply real OOP and ship a desktop UI.</li>
@@ -393,11 +394,10 @@
             document.querySelectorAll('.project-media-swiper').forEach(function (el) {
               var prev = el.querySelector('.swiper-button-prev');
               var next = el.querySelector('.swiper-button-next');
-              var isBlackjack = el.dataset.project === 'blackjack';
               var swiper = new Swiper(el, {
                 loop: true,
                 speed: 500,
-                autoplay: isBlackjack ? false : { delay: 5000, disableOnInteraction: false },
+                autoplay: false,
                 navigation: { nextEl: next, prevEl: prev }
               });
 
@@ -408,6 +408,12 @@
                   slideTimer = null;
                 }
               };
+              var scheduleNext = function (delay) {
+                clearTimer();
+                slideTimer = setTimeout(function () {
+                  swiper.slideNext();
+                }, delay);
+              };
               var resetVideos = function () {
                 el.querySelectorAll('video').forEach(function (vid) {
                   vid.pause();
@@ -415,15 +421,7 @@
                   try { vid.currentTime = 0; } catch (e) {}
                 });
               };
-              var scheduleNext = function (delay) {
-                clearTimer();
-                slideTimer = setTimeout(function () {
-                  swiper.slideNext();
-                }, delay);
-              };
               var handleActiveMedia = function () {
-                if (!isBlackjack) return;
-
                 clearTimer();
                 resetVideos();
 
@@ -450,13 +448,9 @@
                 }
               };
 
-              if (isBlackjack) {
-                swiper.on('slideChangeTransitionStart', resetVideos);
-                swiper.on('slideChangeTransitionEnd', handleActiveMedia);
-                handleActiveMedia();
-              } else {
-                swiper.on('slideChangeTransitionStart', resetVideos);
-              }
+              swiper.on('slideChangeTransitionStart', resetVideos);
+              swiper.on('slideChangeTransitionEnd', handleActiveMedia);
+              handleActiveMedia();
             });
           });
         </script>
