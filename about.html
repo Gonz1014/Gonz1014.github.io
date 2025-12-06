@@ -66,19 +66,10 @@
         margin-top: 3rem;
     }
 
-    .about-map-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 3.2fr) minmax(240px, 0.8fr);
-        gap: 1.5rem;
-        align-items: start;
-    }
+    .about-map-grid { display: block; }
 
     .map-shell {
         position: relative;
-    }
-
-    .about-map-sidebar {
-        max-width: 360px;
     }
 
     .map-container {
@@ -87,6 +78,24 @@
         border-radius: 16px;
         overflow: hidden;
         background: #111111;
+    }
+
+    .about-map-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: flex-start;
+        margin-top: 1.5rem;
+    }
+
+    .about-map-intro { max-width: 420px; }
+    .about-map-legend { display: flex; flex-direction: column; gap: 0.75rem; }
+    .about-legend-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        margin: 0;
+        padding: 0;
     }
 
     /* === Map marker pins (required for visibility) === */
@@ -153,10 +162,6 @@
         letter-spacing: 0.08em;
     }
 
-    .about-legend-list {
-        margin-top: 0.75rem;
-    }
-
     .about-legend-item {
         display: flex;
         align-items: center;
@@ -179,11 +184,21 @@
         background: #a3cfd0; /* match visited country fill */
     }
 
-    @media (max-width: 959px) {
-        .about-map-grid {
-            display: block;
-        }
+    .about-filters .uk-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        margin: 0;
+        padding: 0;
+    }
 
+    .about-filters .uk-list li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    @media (max-width: 959px) {
         .map-container {
             height: 320px;
         }
@@ -268,7 +283,7 @@
                             <!-- About Map Section: main interactive map area -->
                             <div id="about-map" class="about-map-wrapper uk-margin-large-top">
                                 <div class="about-map-grid">
-                                    <!-- Left: Map and hover card shell -->
+                                    <!-- Map and hover card shell -->
                                     <div class="map-shell">
                                         <!-- This is where you will initialize your map library (Leaflet / Mapbox, etc.) -->
                                         <div id="world-map"
@@ -290,49 +305,47 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- Right: Legend + future filters + city list -->
-                                    <aside class="about-map-sidebar">
+                                </div>
+                                <!-- Info row under the map -->
+                                <div class="about-map-info">
+                                    <div class="about-map-intro">
                                         <h3 class="uk-h5 uk-margin-remove dark:uk-text-gray-10">Places</h3>
-                                        <p class="uk-text-small uk-margin-small-top uk-margin-medium-bottom@m">
+                                        <p class="uk-text-small uk-margin-small-top">
                                             Hover over a city pin (or tap on mobile) to see a photo and a short story.
                                         </p>
-
-                                        <!-- Legend for country status -->
-                                        <div class="about-legend">
-                                            <p class="uk-text-small uk-text-muted uk-margin-remove">Country status</p>
-                                            <ul class="about-legend-list uk-list">
-                                                <li class="about-legend-item">
-                                                    <span class="about-legend-swatch lived"></span>
+                                    </div>
+                                    <!-- Legend for country status -->
+                                    <div class="about-map-legend">
+                                        <p class="uk-text-small uk-text-muted uk-margin-remove">Country status</p>
+                                        <ul class="about-legend-list uk-list">
+                                            <li class="about-legend-item">
+                                                <span class="about-legend-swatch lived"></span>
+                                                <span>Lived</span>
+                                            </li>
+                                            <li class="about-legend-item">
+                                                <span class="about-legend-swatch visited"></span>
+                                                <span>Visited</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Future: simple filters to toggle markers by status (to be wired with JS) -->
+                                    <div class="about-filters">
+                                        <p class="uk-text-small uk-text-muted uk-margin-small-bottom">Filter cities</p>
+                                        <ul class="uk-list uk-list-collapse uk-text-small">
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" checked data-city-filter="lived">
                                                     <span>Lived</span>
-                                                </li>
-                                                <li class="about-legend-item">
-                                                    <span class="about-legend-swatch visited"></span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label>
+                                                    <input type="checkbox" checked data-city-filter="visited">
                                                     <span>Visited</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <!-- Future: simple filters to toggle markers by status (to be wired with JS) -->
-                                        <div class="about-filters uk-margin-medium-top">
-                                            <p class="uk-text-small uk-text-muted uk-margin-small-bottom">Filter cities</p>
-                                            <ul class="uk-list uk-list-collapse uk-text-small">
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" checked data-city-filter="lived">
-                                                        <span>Lived</span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" checked data-city-filter="visited">
-                                                        <span>Visited</span>
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </aside>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
 
