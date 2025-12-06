@@ -335,30 +335,10 @@
         background: #000000;
     }
     .rowing-copy-col { display: flex; }
-    .rowing-copy {
-        background: #ffffff;
-        color: #0c0c0f;
-        border-radius: 16px;
-        padding: clamp(16px, 3vw, 28px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        width: 100%;
-    }
-    .dark .rowing-copy {
-        background: #0f0f12;
-        color: #f4f4f4;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    }
-    html.uk-dark .rowing-copy,
-    html.dark .rowing-copy {
-        background: #0f0f12;
-        color: #f4f4f4;
-    }
-    .rowing-copy h3,
-    .rowing-copy p,
-    .rowing-copy li { color: inherit; }
-    .rowing-copy ul {
-        margin-top: 0.75rem;
-    }
+    .rowing-copy { display: none; }
+    .rowing-copy-plain h3,
+    .rowing-copy-plain p,
+    .rowing-copy-plain li { color: inherit; }
     @media (max-width: 959px) {
         .about-rowing-grid { display: block; }
         .row-swiper-wrapper { min-height: 320px; }
@@ -556,7 +536,7 @@
                             </div>
                         </div>
                         <div class="rowing-copy-col">
-                            <div class="rowing-copy">
+                            <div class="rowing-copy-plain">
                                 <h3 class="uk-h4 uk-margin-remove">Rowing</h3>
                                 <ul class="uk-list uk-list-bullet uk-text-small uk-margin-small-top">
                                     <li>I started rowing in 2019 and instantly fell in love the people and the sport. That passion, dedication, and hard work led me to one of my proudest moments, where I represented Mexico’s colors racing at the U19 World Championships in Varese, Italy. Continued to represent Mexico at the Canamex regatta bring home a bronze. I was ranked top U19 rower in Mexico and won four medals racing in USA Nationals. Those experiences taught me grit and composure on big stages, and they set the foundation for how I train, lead, and compete today.</li>
@@ -571,12 +551,10 @@
             <!-- Off-Season Section -->
             <section class="uk-section uk-section-small">
                 <div class="uk-container uk-container-small">
-                    <div class="uk-card uk-card-default uk-card-body uk-border-rounded">
-                        <h3 class="uk-h4 uk-margin-remove">Off-Season</h3>
-                        <p class="uk-margin-small-top uk-text-large">
-                            When I’m not in the boathouse, I chase hard, beautiful places. Either on a bike, on foot, underwater, on snow, and in the sky, and let each one teach me something new.
-                        </p>
-                    </div>
+                    <h3 class="uk-h4 uk-margin-remove">Off-Season</h3>
+                    <p class="uk-margin-small-top uk-text-large">
+                        When I’m not in the boathouse, I chase hard, beautiful places. Either on a bike, on foot, underwater, on snow, and in the sky, and let each one teach me something new.
+                    </p>
                 </div>
             </section>
 
