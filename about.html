@@ -308,7 +308,7 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        background: #0b0d15;
+        background: #ffffff;
         padding: 0;
     }
     .rowing-swiper img,
@@ -320,9 +320,15 @@
         border-radius: 12px;
         filter: none !important;
     }
+    html.uk-dark .rowing-swiper .swiper-slide,
+    .dark .rowing-swiper .swiper-slide,
+    html.dark .rowing-swiper .swiper-slide {
+        background: #000000;
+    }
     .rowing-copy-col { display: flex; }
     .rowing-copy {
         background: #ffffff;
+        color: #0c0c0f;
         border-radius: 16px;
         padding: clamp(16px, 3vw, 28px);
         box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -333,6 +339,9 @@
         color: #f4f4f4;
         box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
+    .rowing-copy h3,
+    .rowing-copy p,
+    .rowing-copy li { color: inherit; }
     .rowing-copy ul {
         margin-top: 0.75rem;
     }

@@ -282,14 +282,14 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   height: var(--contact-icon-size);
   object-fit: contain;
   display: block;
-  filter: invert(1);
+  filter: none;
   transition: opacity 0.2s ease, filter 0.2s ease;
 }
 .contact-links.contact-links--secondary a:hover img { opacity: 0.72; }
 .dark .contact-links.contact-links--secondary img,
 html.dark .contact-links.contact-links--secondary img,
 html.uk-dark .contact-links.contact-links--secondary img {
-  filter: brightness(0);
+  filter: invert(1);
 }
 
 /* ---------- OVERRIDES: BIGGER ICONS + FILLED LINKEDIN ---------- */
