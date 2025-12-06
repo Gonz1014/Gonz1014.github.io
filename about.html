@@ -78,13 +78,53 @@
               centeredSlides: false,
               navigation: { nextEl: next, prevEl: prev }
             });
-            var pauseVideos = function () {
+
+            var slideTimer = null;
+            var clearTimers = function () {
+              if (slideTimer) {
+                clearTimeout(slideTimer);
+                slideTimer = null;
+              }
+            };
+            var resetVideos = function () {
               el.querySelectorAll('video').forEach(function (vid) {
                 vid.pause();
+                vid.onended = null;
                 try { vid.currentTime = 0; } catch (e) {}
               });
             };
-            swiper.on('slideChangeTransitionStart', pauseVideos);
+            var scheduleNext = function (delay) {
+              clearTimers();
+              slideTimer = setTimeout(function () {
+                swiper.slideNext();
+              }, delay);
+            };
+            var handleActiveMedia = function () {
+              clearTimers();
+              resetVideos();
+              var activeSlide = swiper.slides[swiper.activeIndex];
+              if (!activeSlide) return;
+              var video = activeSlide.querySelector('video');
+              if (video) {
+                video.muted = true;
+                var rate = parseFloat(video.dataset.playbackRate || '1');
+                if (!isNaN(rate)) { video.playbackRate = rate; }
+                video.onended = function () {
+                  video.onended = null;
+                  swiper.slideNext();
+                };
+                var playPromise = video.play();
+                if (playPromise && typeof playPromise.then === 'function') {
+                  playPromise.catch(function () { scheduleNext(5000); });
+                }
+              } else {
+                scheduleNext(5000);
+              }
+            };
+
+            swiper.on('slideChangeTransitionStart', resetVideos);
+            swiper.on('slideChangeTransitionEnd', handleActiveMedia);
+            handleActiveMedia();
           });
         </script>
         <style>
@@ -275,7 +315,7 @@
     .rowing-swiper video {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         display: block;
         border-radius: 12px;
         filter: none !important;
