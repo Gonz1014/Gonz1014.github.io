@@ -62,69 +62,71 @@
         <script src="https://cdn.jsdelivr.net/npm/swiper@8.3.2/swiper-bundle.min.js"></script>
         <script src="assets/js/uikit-components.js"></script>
         <script>
-          // Initialize rowing media slider
+          // Initialize auto-advancing media sliders (rowing + off-season)
           document.addEventListener('DOMContentLoaded', function () {
-            var el = document.querySelector('.rowing-swiper');
-            if (!el || typeof Swiper === 'undefined') return;
-            var prev = el.querySelector('.swiper-button-prev');
-            var next = el.querySelector('.swiper-button-next');
-            var swiper = new Swiper(el, {
-              loop: true,
-              speed: 500,
-              autoplay: false,
-              slidesPerView: 1,
-              slidesPerGroup: 1,
-              spaceBetween: 0,
-              centeredSlides: false,
-              navigation: { nextEl: next, prevEl: prev }
-            });
+            if (typeof Swiper === 'undefined') return;
 
-            var slideTimer = null;
-            var clearTimers = function () {
-              if (slideTimer) {
-                clearTimeout(slideTimer);
-                slideTimer = null;
-              }
-            };
-            var resetVideos = function () {
-              el.querySelectorAll('video').forEach(function (vid) {
-                vid.pause();
-                vid.onended = null;
-                try { vid.currentTime = 0; } catch (e) {}
+            document.querySelectorAll('.rowing-swiper, .offseason-swiper').forEach(function (el) {
+              var prev = el.querySelector('.swiper-button-prev');
+              var next = el.querySelector('.swiper-button-next');
+              var swiper = new Swiper(el, {
+                loop: true,
+                speed: 500,
+                autoplay: false,
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                spaceBetween: 0,
+                centeredSlides: false,
+                navigation: { nextEl: next, prevEl: prev }
               });
-            };
-            var scheduleNext = function (delay) {
-              clearTimers();
-              slideTimer = setTimeout(function () {
-                swiper.slideNext();
-              }, delay);
-            };
-            var handleActiveMedia = function () {
-              clearTimers();
-              resetVideos();
-              var activeSlide = swiper.slides[swiper.activeIndex];
-              if (!activeSlide) return;
-              var video = activeSlide.querySelector('video');
-              if (video) {
-                video.muted = true;
-                var rate = parseFloat(video.dataset.playbackRate || '1');
-                if (!isNaN(rate)) { video.playbackRate = rate; }
-                video.onended = function () {
-                  video.onended = null;
-                  swiper.slideNext();
-                };
-                var playPromise = video.play();
-                if (playPromise && typeof playPromise.then === 'function') {
-                  playPromise.catch(function () { scheduleNext(5000); });
-                }
-              } else {
-                scheduleNext(5000);
-              }
-            };
 
-            swiper.on('slideChangeTransitionStart', resetVideos);
-            swiper.on('slideChangeTransitionEnd', handleActiveMedia);
-            handleActiveMedia();
+              var slideTimer = null;
+              var clearTimers = function () {
+                if (slideTimer) {
+                  clearTimeout(slideTimer);
+                  slideTimer = null;
+                }
+              };
+              var resetVideos = function () {
+                el.querySelectorAll('video').forEach(function (vid) {
+                  vid.pause();
+                  vid.onended = null;
+                  try { vid.currentTime = 0; } catch (e) {}
+                });
+              };
+              var scheduleNext = function (delay) {
+                clearTimers();
+                slideTimer = setTimeout(function () {
+                  swiper.slideNext();
+                }, delay);
+              };
+              var handleActiveMedia = function () {
+                clearTimers();
+                resetVideos();
+                var activeSlide = swiper.slides[swiper.activeIndex];
+                if (!activeSlide) return;
+                var video = activeSlide.querySelector('video');
+                if (video) {
+                  video.muted = true;
+                  var rate = parseFloat(video.dataset.playbackRate || '1');
+                  if (!isNaN(rate)) { video.playbackRate = rate; }
+                  video.onended = function () {
+                    video.onended = null;
+                    swiper.slideNext();
+                  };
+                  var playPromise = video.play();
+                  if (playPromise && typeof playPromise.then === 'function') {
+                    playPromise.catch(function () { scheduleNext(5000); });
+                  }
+                } else {
+                  scheduleNext(5000);
+                }
+              };
+
+              swiper.on('slideChangeTransitionStart', resetVideos);
+              swiper.on('slideChangeTransitionEnd', handleActiveMedia);
+              handleActiveMedia();
+            });
           });
         </script>
         <style>
@@ -344,6 +346,64 @@
         .row-swiper-wrapper { min-height: 320px; }
     }
 
+    /* Off-season grid of sliders */
+    .offseason-section { margin-top: 48px; }
+    .offseason-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(16px, 3vw, 28px);
+        align-items: stretch;
+    }
+    .offseason-shell {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 12px;
+        box-shadow: 0 10px 28px rgba(0,0,0,0.16);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: none;
+    }
+    html.uk-dark .offseason-shell,
+    .dark .offseason-shell,
+    html.dark .offseason-shell {
+        background: #000000;
+        box-shadow: 0 14px 32px rgba(0,0,0,0.5);
+        border: none;
+    }
+    .offseason-heading {
+        font-weight: 700;
+        font-size: 1rem;
+        color: inherit;
+        padding: 4px 6px;
+    }
+    .offseason-swiper {
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+    }
+    .offseason-swiper .swiper-wrapper { align-items: stretch; }
+    .offseason-swiper .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: inherit;
+        padding: 0;
+    }
+    .offseason-swiper img,
+    .offseason-swiper video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        filter: none !important;
+    }
+    .offseason-swiper .swiper-button-prev,
+    .offseason-swiper .swiper-button-next { color: currentColor; }
+
     @media (max-width: 959px) {
         .map-container {
             height: 320px;
@@ -549,12 +609,97 @@
             </section>
 
             <!-- Off-Season Section -->
-            <section class="uk-section uk-section-small">
-                <div class="uk-container uk-container-small">
-                    <h3 class="uk-h4 uk-margin-remove">Off-Season</h3>
-                    <p class="uk-margin-small-top uk-text-large">
-                        When I’m not in the boathouse, I chase hard, beautiful places. Either on a bike, on foot, underwater, on snow, and in the sky, and let each one teach me something new.
-                    </p>
+            <section class="uk-section uk-section-small offseason-section">
+                <div class="uk-container">
+                    <div class="uk-margin-large-bottom uk-text-center uk-container-small">
+                        <h3 class="uk-h3 uk-margin-remove">Off-Season</h3>
+                        <p class="uk-margin-small-top uk-text-large">
+                            When I’m not in the boathouse, I chase hard, beautiful places. Either on a bike, on foot, underwater, on snow, and in the sky, and let each one teach me something new.
+                        </p>
+                    </div>
+                    <div class="offseason-grid">
+                        <div class="offseason-shell">
+                            <div class="offseason-heading">Hike + Mountain bike</div>
+                            <div class="swiper offseason-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src="assets/images/about/outdoors/Hike1.jpg" alt="Mountain hike view"></div>
+                                    <div class="swiper-slide"><img src="assets/images/about/outdoors/MountainBike1.jpg" alt="Mountain bike trail"></div>
+                                    <div class="swiper-slide"><img src="assets/images/about/outdoors/Hike4.jpg" alt="Hike summit scene"></div>
+                                    <div class="swiper-slide"><img src="assets/images/about/outdoors/Hike3.jpg" alt="Hike forest trail"></div>
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/MountainbikeVid.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="swiper-slide"><img src="assets/images/about/outdoors/Hike2.png" alt="Hike ridgeline"></div>
+                                </div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+                        </div>
+
+                        <div class="offseason-shell">
+                            <div class="offseason-heading">Scuba + Cliff jump</div>
+                            <div class="swiper offseason-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/Manta_1.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/CroatiaCliffJ.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="swiper-slide"><img src="assets/images/about/outdoors/BeRealDive.jpg" alt="Dive buddies selfie"></div>
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/SmallManta.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/ItalyCliff1.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/Turtle.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+                        </div>
+
+                        <div class="offseason-shell">
+                            <div class="offseason-heading">Skiing + Skydiving</div>
+                            <div class="swiper offseason-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src="assets/images/about/outdoors/SkydivePhoto.jpg" alt="Skydiving photo"></div>
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/SkiCliff.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/skydive.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <video controls muted playsinline>
+                                            <source src="assets/images/about/outdoors/Ski1.MP4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
