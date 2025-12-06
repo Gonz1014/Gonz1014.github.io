@@ -595,14 +595,4 @@ document.addEventListener('DOMContentLoaded', function () {
       box.addEventListener('change', function () {
         activeFilters.clear();
         filterBoxes.forEach(function (b) {
-          if (b.checked) {
-            var val = b.getAttribute('data-city-filter');
-            if (val) activeFilters.add(val);
-          }
-        });
-        applyFilters();
-      });
-    });
-    applyFilters();
-  }
-});
+        
