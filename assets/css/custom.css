@@ -264,6 +264,22 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   shape-rendering: geometricPrecision;
 }
 
+/* Extra contact icons row (resume + GitHub) */
+.contact-links.contact-links--secondary {
+  gap: 48px;
+}
+.contact-links.contact-links--secondary img {
+  width: 72px;
+  height: 72px;
+  display: block;
+}
+@media (max-width: 640px) {
+  .contact-links.contact-links--secondary img {
+    width: 56px;
+    height: 56px;
+  }
+}
+
 /* ---------- OVERRIDES: BIGGER ICONS + FILLED LINKEDIN ---------- */
 
 /* Make the LinkedIn icon a filled glyph (override the outline rule above) */
