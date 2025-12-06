@@ -277,6 +277,9 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   gap: 32px;
   margin-top: 28px;
 }
+.contact-links.contact-links--secondary a {
+  color: inherit !important;
+}
 
 /* ---------- OVERRIDES: BIGGER ICONS + FILLED LINKEDIN ---------- */
 
@@ -288,6 +291,14 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   fill: currentColor !important;
   stroke: none !important;
   vector-effect: none;
+}
+
+/* Ensure resume (file-text) icon follows currentColor in all modes */
+.contact-links .resume-icon svg,
+.contact-links .resume-icon svg * {
+  color: currentColor !important;
+  stroke: currentColor !important;
+  fill: none !important;
 }
 
 /* Make the icons MUCH larger and responsive (keeps same ratio) */
