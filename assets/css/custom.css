@@ -285,13 +285,13 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   height: var(--contact-icon-size);
   object-fit: contain;
   display: block;
-  filter: invert(0);
+  filter: invert(1);
   transition: opacity 0.2s ease, filter 0.2s ease;
 }
 .dark .contact-links.contact-links--secondary .resume-icon-img,
 html.dark .contact-links.contact-links--secondary .resume-icon-img,
 html.uk-dark .contact-links.contact-links--secondary .resume-icon-img {
-  filter: invert(1);
+  filter: invert(0);
 }
 .contact-links.contact-links--secondary a:hover .resume-icon-img { opacity: 0.72; }
 
