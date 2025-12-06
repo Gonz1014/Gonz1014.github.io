@@ -698,10 +698,11 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   min-height: clamp(280px, 32vw, 400px);
   aspect-ratio: 1 / 1;
   background: var(--xp-img-bg, transparent);
+  --xp-title-height: 16.666%;
 }
 .page-projects .xp-card .xp-card-cover {
   position: absolute;
-  inset: 0;
+  inset: var(--xp-title-height) 0 0 0;
   background-image: var(--xp-img, none);
   background-size: var(--xp-img-size, cover);
   background-position: center;
@@ -715,7 +716,7 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
 .page-projects .xp-card::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: var(--xp-title-height) 0 0 0;
   background-image:
     linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.52)),
     var(--xp-img, none);
@@ -729,7 +730,7 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
 .page-projects .xp-card::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: var(--xp-title-height) 0 0 0;
   background: linear-gradient(180deg, rgba(0,0,0,.24), rgba(0,0,0,.55));
   z-index: 2;
   transition: opacity 250ms ease;
