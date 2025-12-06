@@ -692,17 +692,21 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
    ============================= */
 .page-projects .xp-card {
   position: relative;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
   overflow: hidden;
   border-radius: 16px;
   isolation: isolate;
   min-height: clamp(280px, 32vw, 400px);
   aspect-ratio: 1 / 1;
   background: var(--xp-img-bg, transparent);
-  --xp-title-height: 16.666%;
+  --xp-title-height: calc(100% / 6);
 }
 .page-projects .xp-card .xp-card-cover {
-  position: absolute;
-  inset: var(--xp-title-height) 0 0 0;
+  grid-row: 2 / 7;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
   background-image: var(--xp-img, none);
   background-size: var(--xp-img-size, cover);
   background-position: center;
@@ -740,17 +744,29 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
   filter: saturate(1.35) contrast(1.08) brightness(1.06);
 }
 .page-projects .xp-card:hover::after  { opacity: .12; }
-.page-projects .xp-card .xp-card-inner { position: relative; z-index: 3; color: #ffffff; }
-.page-projects .xp-card .xp-card-inner {
-  padding: 10px 14px;
-  margin: 12px;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(3px);
-  border-radius: 12px;
+.page-projects .xp-card .xp-card-inner { 
+  position: relative; 
+  z-index: 3; 
+  color: #0c0c0f;
+  grid-row: 1 / 2;
+  align-self: center;
+  justify-self: start;
+  padding: 12px 18px;
+  margin: 0;
+  background: transparent;
+  backdrop-filter: none;
+  border-radius: 0;
   display: inline-flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: flex-start;
+  gap: 6px;
 }
+.page-projects .xp-card .xp-card-inner.xp-card-inner--right {
+  justify-self: end;
+  align-items: flex-end;
+  text-align: right;
+}
+.dark .page-projects .xp-card .xp-card-inner { color: #f4f4f4; }
 .page-projects .xp-card > a.uk-position-cover { z-index: 4; }
 /* Ensure any leftover mosaic markup stays hidden on projects */
 .page-projects .xp-mosaic { display: none !important; }
