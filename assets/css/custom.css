@@ -913,4 +913,14 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
 }
 
 /* Ensure the icon always sits above any leftover decoration */
-.uni
+.uni-studio-footer .contact-links .uk-icon,
+.uni-studio-footer .contact-links [data-uk-icon] {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Prevent light/dark theme from altering outlines — we show only glyphs */
+.uni-studio-footer .contact-links .uk-icon svg,
+.uni-studio-footer .contact-links [data-uk-icon] svg {
+  outline: none !important;
+}
