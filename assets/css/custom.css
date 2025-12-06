@@ -801,17 +801,17 @@ html.uk-dark .uni-studio-footer .footer-bottom-rule {
 .dark .page-projects .project-modal .swiper-button-next { color: #fff; }
 .page-projects .project-modal .project-modal-text {
   padding: clamp(12px, 2vw, 20px);
-  color: #0f172a;
+  color: #ffffff;
   gap: 12px;
 }
 .page-projects .project-modal .project-modal-text p,
-.page-projects .project-modal .project-modal-text li { color: #1f2937; }
-.dark .page-projects .project-modal .project-modal-text { color: #e9ecef; }
+.page-projects .project-modal .project-modal-text li { color: #e6e9f2; }
+.dark .page-projects .project-modal .project-modal-text { color: #ffffff; }
 .dark .page-projects .project-modal .project-modal-text p,
-.dark .page-projects .project-modal .project-modal-text li { color: #e0e7ff; }
+.dark .page-projects .project-modal .project-modal-text li { color: #e6e9f2; }
 .page-projects .project-modal h3 { color: inherit; }
-.page-projects .project-modal .uk-text-meta { color: #4b5563; }
-.dark .page-projects .project-modal .uk-text-meta { color: #a3b1c2; }
+.page-projects .project-modal .uk-text-meta { color: #d6d9e4; }
+.dark .page-projects .project-modal .uk-text-meta { color: #d6d9e4; }
 .page-projects .project-modal .uk-modal-close-default {
   color: inherit;
   top: 14px;
