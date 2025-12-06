@@ -73,6 +73,7 @@
               speed: 500,
               autoplay: false,
               slidesPerView: 1,
+              slidesPerGroup: 1,
               spaceBetween: 0,
               centeredSlides: false,
               navigation: { nextEl: next, prevEl: prev }
@@ -245,22 +246,30 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        overflow: hidden;
     }
     .rowing-swiper {
         width: 100%;
         height: 100%;
         overflow: hidden;
+        position: relative;
     }
     .rowing-swiper .swiper-wrapper {
-        align-items: center;
+        align-items: stretch;
+        width: 100%;
+        height: 100%;
     }
     .rowing-swiper .swiper-slide {
+        flex: 0 0 100% !important;
         width: 100% !important;
-        background: radial-gradient(circle at 30% 20%, rgba(0, 199, 255, 0.16), transparent 42%), radial-gradient(circle at 80% 72%, rgba(255, 118, 72, 0.18), transparent 46%), #0b0d15;
+        max-width: 100% !important;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 12px;
+        overflow: hidden;
+        background: #0b0d15;
+        padding: 0;
     }
     .rowing-swiper img,
     .rowing-swiper video {
