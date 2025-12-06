@@ -61,6 +61,28 @@
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit-icons.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@8.3.2/swiper-bundle.min.js"></script>
         <script src="assets/js/uikit-components.js"></script>
+        <script>
+          // Initialize rowing media slider
+          document.addEventListener('DOMContentLoaded', function () {
+            var el = document.querySelector('.rowing-swiper');
+            if (!el || typeof Swiper === 'undefined') return;
+            var prev = el.querySelector('.swiper-button-prev');
+            var next = el.querySelector('.swiper-button-next');
+            var swiper = new Swiper(el, {
+              loop: true,
+              speed: 500,
+              autoplay: false,
+              navigation: { nextEl: next, prevEl: prev }
+            });
+            var pauseVideos = function () {
+              el.querySelectorAll('video').forEach(function (vid) {
+                vid.pause();
+                try { vid.currentTime = 0; } catch (e) {}
+              });
+            };
+            swiper.on('slideChangeTransitionStart', pauseVideos);
+          });
+        </script>
         <style>
     .about-map-wrapper {
         margin-top: 3rem;
@@ -196,6 +218,54 @@
         display: inline-flex;
         align-items: center;
         gap: 0.35rem;
+    }
+
+    /* Rowing section */
+    .about-rowing {
+        margin-top: 4rem;
+    }
+    .rowing-shell {
+        background: #0f0f12;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 18px 48px rgba(0,0,0,0.35);
+    }
+    .row-swiper-wrapper {
+        min-height: clamp(320px, 45vw, 620px);
+    }
+    .rowing-swiper {
+        width: 100%;
+        height: 100%;
+    }
+    .rowing-swiper .swiper-slide {
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .rowing-swiper img,
+    .rowing-swiper video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .rowing-copy {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: clamp(16px, 3vw, 28px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    .dark .rowing-copy {
+        background: #0f0f12;
+        color: #f4f4f4;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .rowing-copy ul {
+        margin-top: 0.75rem;
+    }
+    @media (max-width: 959px) {
+        .row-swiper-wrapper { min-height: 320px; }
     }
 
     @media (max-width: 959px) {
@@ -353,6 +423,58 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Rowing Section -->
+            <section class="about-rowing">
+                <div class="uk-container uk-container-small">
+                    <div class="uk-grid uk-grid-large uk-flex-middle" data-uk-grid>
+                        <div class="uk-width-2-3@m">
+                            <div class="rowing-shell row-swiper-wrapper">
+                                <div class="swiper rowing-swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide"><img src="assets/images/about/rowing/RowingWorlds.jpg" alt="Racing at Worlds regatta"></div>
+                                        <div class="swiper-slide"><img src="assets/images/about/rowing/RowingSick.jpg" alt="Training while under the weather"></div>
+                                        <div class="swiper-slide">
+                                            <video controls muted playsinline>
+                                                <source src="assets/images/about/rowing/RowingVid1.MP4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <div class="swiper-slide"><img src="assets/images/about/rowing/RowingMex.jpg" alt="Rowing in Mexico"></div>
+                                        <div class="swiper-slide"><img src="assets/images/about/rowing/RowingTrophy.jpg" alt="Holding a rowing trophy"></div>
+                                        <div class="swiper-slide">
+                                            <video controls muted playsinline>
+                                                <source src="assets/images/about/rowing/RowingVid2.MP4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <div class="swiper-slide"><img src="assets/images/about/rowing/RowingErgTest.jpg" alt="Ergometer test"></div>
+                                        <div class="swiper-slide"><img src="assets/images/about/rowing/Rowing%20Sunset.jpg" alt="Rowing at sunset"></div>
+                                        <div class="swiper-slide">
+                                            <video controls muted playsinline>
+                                                <source src="assets/images/about/rowing/RowingVid3.MP4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-3@m">
+                            <div class="rowing-copy">
+                                <h3 class="uk-h4 uk-margin-remove">Rowing</h3>
+                                <p class="uk-text-small uk-margin-small-top">
+                                    I row on sweep and scull crews year-round—mixing national racing seasons with dawn water sessions, cross-training, and the inevitable erg tests. It’s discipline, teamwork, and problem-solving under pressure.
+                                </p>
+                                <ul class="uk-list uk-list-bullet uk-text-small uk-margin-small-top">
+                                    <li>Highlights include Worlds lineups, medals on domestic circuits, and tough sessions at altitude and sea level.</li>
+                                    <li>I handle boat setup, rigging tweaks, video review, and training data to keep splits honest and crews in sync.</li>
+                                    <li>Off the water: strength cycles, recovery protocols, and building race plans that hold up in headwinds.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Cta / Footer -->
             <footer class="uni-studio-footer uk-background-gray-90 uk-text-white dark:uk-background-white dark:uk-text-gray-90">
