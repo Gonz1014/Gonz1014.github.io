@@ -66,6 +66,24 @@
           document.addEventListener('DOMContentLoaded', function () {
             if (typeof Swiper === 'undefined') return;
 
+            var enforceMute = function (video) {
+              if (!video) return;
+              video.muted = true;
+              video.volume = 0;
+              video.addEventListener('volumechange', function () {
+                if (!video.muted || video.volume > 0) {
+                  video.muted = true;
+                  video.volume = 0;
+                }
+              });
+              video.addEventListener('loadedmetadata', function () {
+                video.muted = true;
+                video.volume = 0;
+              });
+            };
+
+            document.querySelectorAll('.rowing-swiper video, .offseason-swiper video').forEach(enforceMute);
+
             document.querySelectorAll('.rowing-swiper, .offseason-swiper').forEach(function (el) {
               var prev = el.querySelector('.swiper-button-prev');
               var next = el.querySelector('.swiper-button-next');
@@ -108,6 +126,7 @@
                 var video = activeSlide.querySelector('video');
                 if (video) {
                   video.muted = true;
+                  video.volume = 0;
                   var rate = parseFloat(video.dataset.playbackRate || '1');
                   if (!isNaN(rate)) { video.playbackRate = rate; }
                   video.onended = function () {

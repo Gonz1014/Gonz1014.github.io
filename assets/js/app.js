@@ -48,7 +48,9 @@ var cityData = [
   { id: "airlie-beach-au",         name: "Airlie Beach, Australia",      status: "visited", lat: -20.2675, lng: 148.7169, image: "assets/images/cities/airlie-beach-au.jpg",         caption: "" },
   { id: "brisbane-au",             name: "Brisbane, Australia",          status: "visited", lat: -27.4698, lng: 153.0251, image: "assets/images/cities/brisbane-au.jpg",             caption: "" },
   { id: "gold-coast-au",           name: "Gold Coast, Australia",        status: "visited", lat: -28.0167, lng: 153.4000, image: "assets/images/cities/gold-coast-au.jpg",           caption: "" },
+  { id: "moreton-island-au",       name: "Moreton Island, Australia",    status: "visited", lat: -27.1200, lng: 153.3670, image: "assets/images/cities/moreton-island-au.jpg",       caption: "" },
   { id: "byron-bay-au",            name: "Byron Bay, Australia",         status: "visited", lat: -28.6474, lng: 153.6020, image: "assets/images/cities/byron-bay-au.jpg",            caption: "" },
+  { id: "whitsundays-au",          name: "Whitsundays, Australia",       status: "visited", lat: -20.2827, lng: 149.0686, image: "assets/images/cities/whitsundays-au.jpg",          caption: "" },
 
   // Malaysia
   { id: "cameron-highlands-my",    name: "Cameron Highlands, Malaysia",  status: "visited", lat: 4.4700,  lng: 101.3780, image: "assets/images/cities/cameron-highlands-my.jpg",    caption: "" },
