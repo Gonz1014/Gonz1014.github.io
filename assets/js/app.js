@@ -483,20 +483,13 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (targetSrc) {
-      var cached = imageCache.get(targetSrc);
-      if (cached && cached.status === 'ok') {
-        applyImage(cached.url, false);
-      } else {
-        var resolved = resolveUrl(targetSrc);
-        if (resolved) {
-          applyImage(resolved, false);
-        } else {
-          applyImage(defaultImg, true);
-        }
+      var resolved = resolveUrl(targetSrc);
+      if (resolved) {
+        applyImage(resolved, false);
+        return;
       }
-    } else {
-      applyImage(defaultImg, true);
     }
+    applyImage(defaultImg, true);
   };
 
   var hideCard = function () {
