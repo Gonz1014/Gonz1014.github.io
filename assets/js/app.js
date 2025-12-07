@@ -6,7 +6,7 @@ var cityData = [
   { id: "madrid-es",               name: "Madrid, Spain",                status: "visited", lat: 40.4168, lng: -3.7038, image: "assets/images/cities/madrid-es.jpg",               caption: "" },
   { id: "segovia-es",              name: "Segovia, Spain",               status: "visited", lat: 40.9429, lng: -4.1088, image: "assets/images/cities/segovia-es.jpg",              caption: "" },
   { id: "valle-de-los-caidos-es",  name: "Valle de los Caídos, Spain",   status: "visited", lat: 40.6414, lng: -4.1513, image: "assets/images/cities/valle-de-los-caidos-es.jpg",   caption: "" },
-  { id: "barcelona-es",            name: "Barcelona, Spain",             status: "visited", lat: 41.3874, lng: 2.1686,  image: "assets/images/cities/barcelona-es.jpg",            caption: "" },
+  { id: "barcelona-es",            name: "Barcelona, Spain",             status: "visited", lat: 41.3874, lng: 2.1686,  image: "assets/images/cities/barcelona-es1.jpg",            caption: "" },
   { id: "ibiza-es",                name: "Ibiza, Spain",                 status: "visited", lat: 38.9067, lng: 1.4206,  image: "assets/images/cities/ibiza-es.jpg",                caption: "" },
 
   // United States
@@ -69,7 +69,7 @@ var cityData = [
   { id: "wuhan-cn",                name: "Wuhan, China",                 status: "visited", lat: 30.5928, lng: 114.3055, image: "assets/images/cities/wuhan-cn.jpg",                caption: "" },
   { id: "chengdu-cn",              name: "Chengdu, China",               status: "visited", lat: 30.5728, lng: 104.0668, image: "assets/images/cities/chengdu-cn.jpg",              caption: "" },
   { id: "kashgar-cn",              name: "Kashgar, China",               status: "visited", lat: 39.4704, lng: 75.9898,  image: "assets/images/cities/kashgar-cn.jpg",              caption: "" },
-  { id: "tashkurgan-cn",           name: "Tashkurgan, China",            status: "visited", lat: 37.7724, lng: 75.2280,  image: "assets/images/cities/tashkurgan-cn.jpg",           caption: "" },
+  { id: "tashkurgan-cn",           name: "Tashkurgan, China",            status: "visited", lat: 37.7724, lng: 75.2280,  image: "assets/images/cities/tashkurgan-cn1.jpg",           caption: "" },
   { id: "urumqi-cn",               name: "Urumqi, China",                status: "visited", lat: 43.8256, lng: 87.6168,  image: "assets/images/cities/urumqi-cn.jpg",               caption: "" },
   { id: "turpan-cn",               name: "Turpan, China",                status: "visited", lat: 42.9423, lng: 89.1895,  image: "assets/images/cities/turpan-cn.jpg",               caption: "" },
   { id: "dunhuang-cn",             name: "Dunhuang, China",              status: "visited", lat: 40.1421, lng: 94.6616,  image: "assets/images/cities/dunhuang-cn.jpg",             caption: "" },
@@ -107,18 +107,18 @@ var cityData = [
   { id: "hvar-hr",                 name: "Hvar, Croatia",                status: "visited", lat: 43.1727, lng: 16.4424,  image: "assets/images/cities/hvar-hr.jpg",                caption: "" },
   { id: "mykonos-gr",              name: "Mykonos, Greece",              status: "visited", lat: 37.4467, lng: 25.3289,  image: "assets/images/cities/mykonos-gr.jpg",             caption: "" },
   { id: "istanbul-tr",             name: "Istanbul, Turkey",             status: "visited", lat: 41.0082, lng: 28.9784,  image: "assets/images/cities/istanbul-tr.jpg",            caption: "" },
-  { id: "naples-it",               name: "Naples, Italy",                status: "visited", lat: 40.8518, lng: 14.2681, image: "assets/images/cities/naples-it.jpg",               caption: "" },
+  { id: "naples-it",               name: "Naples, Italy",                status: "visited", lat: 40.8518, lng: 14.2681, image: "assets/images/cities/naples-it1.jpg",               caption: "" },
   { id: "positano-it",             name: "Positano, Italy",              status: "visited", lat: 40.6281, lng: 14.4845, image: "assets/images/cities/positano-it.jpg",             caption: "" },
   { id: "sorrento-it",             name: "Sorrento, Italy",              status: "visited", lat: 40.6263, lng: 14.3758, image: "assets/images/cities/sorrento-it.jpg",             caption: "" },
   { id: "como-it",                 name: "Como, Italy",                  status: "visited", lat: 45.8081, lng: 9.0852,  image: "assets/images/cities/como-it.jpg",                caption: "" },
-  { id: "civitavecchia-it",        name: "Civitavecchia, Italy",         status: "visited", lat: 42.0930, lng: 11.7926, image: "assets/images/cities/civitavecchia-it.jpg",        caption: "" },
-  { id: "pisa-it",                 name: "Pisa, Italy",                  status: "visited", lat: 43.7228, lng: 10.4017, image: "assets/images/cities/pisa-it.jpg",                 caption: "" },
-  { id: "varese-it",               name: "Varese, Italy",                status: "visited", lat: 45.8200, lng: 8.8250,  image: "assets/images/cities/varese-it.jpg",               caption: "" },
-  { id: "marseille-fr",            name: "Marseille, France",            status: "visited", lat: 43.2965, lng: 5.3698,  image: "assets/images/cities/marseille-fr.jpg",            caption: "" },
-  { id: "palermo-it",              name: "Palermo, Italy",               status: "visited", lat: 38.1157, lng: 13.3615, image: "assets/images/cities/palermo-it.jpg",              caption: "" },
+  { id: "civitavecchia-it",        name: "Civitavecchia, Italy",         status: "visited", lat: 42.0930, lng: 11.7926, image: "assets/images/cities/civitavecchia-it1.jpg",        caption: "" },
+  { id: "pisa-it",                 name: "Pisa, Italy",                  status: "visited", lat: 43.7228, lng: 10.4017, image: "assets/images/cities/pisa-it1.jpg",                 caption: "" },
+  { id: "varese-it",               name: "Varese, Italy",                status: "visited", lat: 45.8200, lng: 8.8250,  image: "assets/images/cities/varese-it1.jpg",               caption: "" },
+  { id: "marseille-fr",            name: "Marseille, France",            status: "visited", lat: 43.2965, lng: 5.3698,  image: "assets/images/cities/marseille-fr1.jpg",            caption: "" },
+  { id: "palermo-it",              name: "Palermo, Italy",               status: "visited", lat: 38.1157, lng: 13.3615, image: "assets/images/cities/palermo-it1.jpg",              caption: "" },
 
   // Canada
-  { id: "toronto-ca",              name: "Toronto, Canada",              status: "visited", lat: 43.6532, lng: -79.3832, image: "assets/images/cities/toronto-ca.jpg",              caption: "" }
+  { id: "toronto-ca",              name: "Toronto, Canada",              status: "visited", lat: 43.6532, lng: -79.3832, image: "assets/images/cities/toronto-ca1.jpg",              caption: "" }
 ];
 // Initialize Leaflet map on About page
 document.addEventListener('DOMContentLoaded', function () {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var validCities = cityData.filter(function (c) {
     return typeof c.lat === 'number' && typeof c.lng === 'number';
   });
-  var fallbackCityImage = 'assets/images/cities/barcelona-es.jpg';
+  var fallbackCityImage = 'assets/images/cities/barcelona-es1.jpg';
   validCities.forEach(function (c) {
     if (!c.image) {
       c.image = fallbackCityImage;
