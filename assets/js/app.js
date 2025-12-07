@@ -487,7 +487,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (targetSrc) {
       var resolved = resolveUrl(targetSrc);
       if (resolved) {
-        applyImage(resolved, false);
+        var busted = resolved + (resolved.includes('?') ? '&' : '?') + 'v=1';
+        applyImage(busted, false);
         return;
       }
     }
