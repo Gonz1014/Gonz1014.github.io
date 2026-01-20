@@ -78,6 +78,19 @@ var cityData = [
   { id: "shangri-la-cn",           name: "Shangri-La, China",            status: "visited", lat: 27.8333, lng: 99.7000,  image: "assets/images/cities/shangri-la-cn.jpg",           caption: "" },
   { id: "chongqing-cn",            name: "Chongqing, China",             status: "visited", lat: 29.5630, lng: 106.5516, image: "assets/images/cities/chongqing-cn.jpg",            caption: "" },
 
+  // Bhutan
+  { id: "paro-bt",                 name: "Paro, Bhutan",                 status: "visited", lat: 27.4305, lng: 89.4125,  image: "assets/images/cities/paro-bt.jpg",                 caption: "" },
+  { id: "punakha-bt",              name: "Punakha, Bhutan",              status: "visited", lat: 27.5921, lng: 89.8771,  image: "assets/images/cities/punakha-bt.jpg",              caption: "" },
+  { id: "tashichho-dzong-bt",      name: "Tashichho Dzong, Bhutan",      status: "visited", lat: 27.4924, lng: 89.6360,  image: "assets/images/cities/tashichho-dzong-bt.jpg",      caption: "" },
+  { id: "thimphu-bt",              name: "Thimphu, Bhutan",              status: "visited", lat: 27.4728, lng: 89.6390,  image: "assets/images/cities/thimphu-bt.jpg",              caption: "" },
+  { id: "tigers-nest-bt",          name: "Tiger's Nest, Bhutan",         status: "visited", lat: 27.4915, lng: 89.3635,  image: "assets/images/cities/tigers-nest-bt.jpg",          caption: "" },
+  { id: "trongsa-bt",              name: "Trongsa, Bhutan",              status: "visited", lat: 27.4999, lng: 90.5070,  image: "assets/images/cities/trongsa-bt.jpg",              caption: "" },
+  { id: "wangdue-phodrang-bt",     name: "Wangdue Phodrang, Bhutan",     status: "visited", lat: 27.4806, lng: 89.8999,  image: "assets/images/cities/wangdue-phodrang-bt.jpg",     caption: "" },
+
+  // India
+  { id: "agra-in",                 name: "Agra, India",                  status: "visited", lat: 27.1767, lng: 78.0081,  image: "assets/images/cities/agra-in.jpg",                 caption: "" },
+  { id: "delhi-in",                name: "Delhi, India",                 status: "visited", lat: 28.6139, lng: 77.2090,  image: "assets/images/cities/delhi-in.jpg",                caption: "" },
+
   // New Zealand
   { id: "christchurch-nz",         name: "Christchurch, New Zealand",    status: "visited", lat: -43.5321, lng: 172.6362, image: "assets/images/cities/christchurch-nz.jpg",         caption: "" },
   { id: "arthurs-pass-nz",         name: "Arthur's Pass, New Zealand",   status: "visited", lat: -42.9417, lng: 171.5653, image: "assets/images/cities/arthurs-pass-nz.jpg",         caption: "" },
