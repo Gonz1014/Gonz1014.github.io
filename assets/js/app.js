@@ -81,7 +81,6 @@ var cityData = [
   // Bhutan
   { id: "paro-bt",                 name: "Paro, Bhutan",                 status: "visited", lat: 27.4305, lng: 89.4125,  image: "assets/images/cities/paro-bt.jpg",                 caption: "" },
   { id: "punakha-bt",              name: "Punakha, Bhutan",              status: "visited", lat: 27.5921, lng: 89.8771,  image: "assets/images/cities/punakha-bt.jpg",              caption: "" },
-  { id: "tashichho-dzong-bt",      name: "Tashichho Dzong, Bhutan",      status: "visited", lat: 27.4924, lng: 89.6360,  image: "assets/images/cities/tashichho-dzong-bt.jpg",      caption: "" },
   { id: "thimphu-bt",              name: "Thimphu, Bhutan",              status: "visited", lat: 27.4728, lng: 89.6390,  image: "assets/images/cities/thimphu-bt.jpg",              caption: "" },
   { id: "tigers-nest-bt",          name: "Tiger's Nest, Bhutan",         status: "visited", lat: 27.4915, lng: 89.3635,  image: "assets/images/cities/tigers-nest-bt.jpg",          caption: "" },
   { id: "trongsa-bt",              name: "Trongsa, Bhutan",              status: "visited", lat: 27.4999, lng: 90.5070,  image: "assets/images/cities/trongsa-bt.jpg",              caption: "" },
