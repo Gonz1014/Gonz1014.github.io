@@ -50,6 +50,17 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/css/uikit.min.css">
         <link rel="stylesheet" href="assets/css/theme/main.min.css">
         <link rel="stylesheet" href="assets/css/custom.css">
+        <style>
+            .page-projects .contact-links.contact-links--secondary .resume-icon-img {
+                filter: invert(1) !important;
+            }
+
+            .dark .page-projects .contact-links.contact-links--secondary .resume-icon-img,
+            html.dark .page-projects .contact-links.contact-links--secondary .resume-icon-img,
+            html.uk-dark .page-projects .contact-links.contact-links--secondary .resume-icon-img {
+                filter: invert(0) !important;
+            }
+        </style>
 
         <!-- include scripts -->
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit.min.js"></script>
@@ -90,7 +101,7 @@
 
             <!-- Hero: Header -->
             <header class="uni-studio-header uni-header">
-                <div class="uni-header-navbar uk-sticky-transparent" data-uk-sticky="top: 120; animation: uk-animation-slide-top;">
+                <div class="uni-header-navbar">
                     <div class="uk-container uk-container-expand">
                         <nav class="uk-navbar uk-navbar-container uk-navbar-transparent" data-uk-navbar>
                             <div class="uk-navbar-top uk-flex-center">

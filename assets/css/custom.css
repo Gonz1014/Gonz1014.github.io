@@ -348,6 +348,27 @@ html.uk-dark .contact-links.contact-links--secondary .resume-icon-img {
   width: var(--contact-icon-size) !important;
   height: var(--contact-icon-size) !important;
 }
+
+/* ---------- HEADER: FIXED AND TRANSPARENT ---------- */
+.uni-header-navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  background: transparent !important;
+  z-index: 1000 !important;
+  box-shadow: none !important;
+}
+
+.uni-header-navbar.uk-active {
+  background: transparent !important;
+}
+
+/* Add top padding to body to account for fixed header */
+body {
+  padding-top: 80px !important;
+}
 /* =============================
    EXPERIENCE PAGE (scoped styles)
    These rules only apply on pages whose <body> has class "page-experience"
