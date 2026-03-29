@@ -119,34 +119,24 @@ body[data-theme="dark"] .uni-studio-footer {
 /* ---------- SITE LOGO (header) ---------- */
 .site-logo {
   display: block;
-  width: auto;
-  height: 320px; /* extra-large on-page logo */
-  max-height: 320px;
-  transition: height 180ms ease, opacity 180ms ease, filter 180ms ease;
-  /* Default/day mode: show the SVG's original colors (no forced filter) */
-  filter: none !important;
+  width: var(--header-logo-width);
+  height: auto;
+  max-width: none;
+  transition: filter 180ms ease;
+  filter: none;
 }
 
-/* ---------- SITE LOGO THEME COLOR (day/night) ---------- */
-/* Dark mode: make the logo appear white for contrast. We use invert and brightness
-   which works for most monochrome or single-color SVG logos. If your SVG contains
-   multiple colors you can replace this with a dedicated white SVG file and swap
-   the `src` via JS instead. */
-html.uk-dark .site-logo {
-  filter: invert(1) brightness(1.05) !important; /* renders logo as light/white */
+/* Sticky header logo should use the same sizing system as the previous text logo. */
+.uni-header-navbar.uk-sticky.uk-active:not(.uni-mobile-header) .site-logo {
+  width: var(--header-logo-sticky-width);
 }
 
-/* When navbar becomes sticky, reduce logo size to match the small GC */
-.uk-sticky .site-logo,
-.uni-header .uk-sticky .site-logo,
-.uk-sticky.uk-active .site-logo {
-  height: 160px !important; /* shrink when sticky but still very large */
-  max-height: 160px !important;
-}
-
-@media (max-width: 640px) {
-  .site-logo { height: 240px; max-height: 240px; }
-  .uk-sticky .site-logo { height: 120px; max-height: 120px; }
+/* Light mode: dark logo. Dark mode: invert to a light logo. */
+html.uk-dark .site-logo,
+body.uk-dark .site-logo,
+html.dark .site-logo,
+body.dark .site-logo {
+  filter: invert(1);
 }
 
 /* Contact section visual tweaks */
