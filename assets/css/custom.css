@@ -119,16 +119,24 @@ body[data-theme="dark"] .uni-studio-footer {
 /* ---------- SITE LOGO (header) ---------- */
 .site-logo {
   display: block;
-  width: var(--header-logo-width);
-  height: auto;
+  width: auto !important;
+  height: 44px !important;
+  max-height: 44px !important;
   max-width: none;
   transition: filter 180ms ease;
-  filter: none;
+  filter: invert(0);
 }
 
-/* Sticky header logo should use the same sizing system as the previous text logo. */
-.uni-header-navbar.uk-sticky.uk-active:not(.uni-mobile-header) .site-logo {
-  width: var(--header-logo-sticky-width);
+/* Keep the logo pinned to the top-left without affecting the menu trigger. */
+.uni-header-navbar .uk-logo,
+.uni-header-navbar .uk-sticky-logo {
+  position: fixed !important;
+  top: 18px !important;
+  left: 18px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  z-index: 1001 !important;
 }
 
 /* Light mode: dark logo. Dark mode: invert to a light logo. */
@@ -136,7 +144,7 @@ html.uk-dark .site-logo,
 body.uk-dark .site-logo,
 html.dark .site-logo,
 body.dark .site-logo {
-  filter: invert(1);
+  filter: invert(1) !important;
 }
 
 /* Contact section visual tweaks */
@@ -353,6 +361,12 @@ html.uk-dark .contact-links.contact-links--secondary .resume-icon-img {
 
 .uni-header-navbar.uk-active {
   background: transparent !important;
+}
+
+.uni-header-navbar.uk-sticky.uk-active,
+.uni-header-navbar.uk-sticky.uk-active:not(.uk-sticky-transparent) {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* Add top padding to body to account for fixed header */
