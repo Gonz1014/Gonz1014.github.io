@@ -26,6 +26,13 @@ var cityData = [
   { id: "honolulu-us",             name: "Honolulu, USA",                status: "visited", lat: 21.3069, lng: -157.8583, image: "assets/images/cities/honolulu-us.jpg",             caption: "" },
   { id: "kauai-us",                name: "Kauai, USA",                   status: "visited", lat: 22.0964, lng: -159.5261, image: "assets/images/cities/kauai-us.jpg",                caption: "" },
   { id: "hawaii-island-us",        name: "Hawaii Island (Big Island), USA", status: "visited", lat: 19.5429, lng: -155.6659, image: "assets/images/cities/hawaii-island-us.jpg",      caption: "" },
+  { id: "bend-us",                 name: "Bend, USA",                    status: "visited", lat: 44.0582, lng: -121.3153, image: "assets/images/cities/bend-us.jpg",                 caption: "" },
+  { id: "crater-lake-us",          name: "Crater Lake, USA",             status: "visited", lat: 42.9446, lng: -122.1090, image: "assets/images/cities/crater-lake-us.jpg",          caption: "" },
+  { id: "leavenworth-us",          name: "Leavenworth, USA",             status: "visited", lat: 47.5962, lng: -120.6615, image: "assets/images/cities/leavenworth-us.jpg",          caption: "" },
+  { id: "lake-wenatchee-us",       name: "Lake Wenatchee, USA",          status: "visited", lat: 47.8397, lng: -120.7889, image: "assets/images/cities/lake-wenatchee-us.jpg",       caption: "" },
+  { id: "coeur-dalene-us",         name: "Coeur d'Alene, USA",           status: "visited", lat: 47.6777, lng: -116.7805, image: "assets/images/cities/coeur-dalene-us.jpg",         caption: "" },
+  { id: "mount-washington-us",     name: "Mount Washington, USA",        status: "visited", lat: 44.2706, lng: -71.3033,  image: "assets/images/cities/mount-washington-us.jpg",     caption: "" },
+  { id: "lake-lure-us",            name: "Lake Lure, USA",               status: "visited", lat: 35.4290, lng: -82.2043,  image: "assets/images/cities/lake-lure-us.jpg",            caption: "" },
 
   // Mexico
   { id: "cancun-mx",               name: "Cancún, Mexico",               status: "visited", lat: 21.1619, lng: -86.8515, image: "assets/images/cities/cancun-mx.jpg",               caption: "" },
@@ -41,6 +48,8 @@ var cityData = [
   { id: "acapulco-mx",             name: "Acapulco, Mexico",             status: "visited", lat: 16.8531, lng: -99.8237, image: "assets/images/cities/acapulco-mx.jpg",             caption: "" },
   { id: "texcoco-mx",              name: "Texcoco, Mexico",              status: "visited", lat: 19.5134, lng: -98.8826, image: "assets/images/cities/texcoco-mx.jpg",              caption: "" },
   { id: "san-miguel-mx",           name: "San Miguel de Allende, Mexico",status: "visited", lat: 20.9140, lng: -100.7438, image: "assets/images/cities/san-miguel-mx.jpg",           caption: "" },
+  { id: "cabo-san-lucas-mx",       name: "Cabo San Lucas, Mexico",       status: "visited", lat: 22.8905, lng: -109.9167, image: "assets/images/cities/cabo-san-lucas-mx.jpg",       caption: "" },
+  { id: "la-paz-mx",               name: "La Paz, Mexico",               status: "visited", lat: 24.1426, lng: -110.3128, image: "assets/images/cities/la-paz-mx.jpg",               caption: "" },
 
   // Australia
   { id: "sydney-au",               name: "Sydney, Australia",            status: "lived",   lat: -33.8688, lng: 151.2093, image: "assets/images/cities/sydney-au.jpg",               caption: "" },
@@ -130,7 +139,28 @@ var cityData = [
   { id: "palermo-it",              name: "Palermo, Italy",               status: "visited", lat: 38.1157, lng: 13.3615, image: "assets/images/cities/palermo-it1.jpg",              caption: "" },
 
   // Canada
-  { id: "toronto-ca",              name: "Toronto, Canada",              status: "visited", lat: 43.6532, lng: -79.3832, image: "assets/images/cities/toronto-ca1.jpg",              caption: "" }
+  { id: "toronto-ca",              name: "Toronto, Canada",              status: "visited", lat: 43.6532, lng: -79.3832, image: "assets/images/cities/toronto-ca1.jpg",              caption: "" },
+
+  // Iceland
+  { id: "reykjavik-is",            name: "Reykjavík, Iceland",           status: "visited", lat: 64.1466, lng: -21.9426, image: "assets/images/cities/reykjavik-is.jpg",            caption: "" },
+  { id: "reynisfjara-is",          name: "Reynisfjara, Iceland",         status: "visited", lat: 63.4030, lng: -19.0447, image: "assets/images/cities/reynisfjara-is.jpg",          caption: "" },
+  { id: "solheimajokull-is",       name: "Sólheimajökull, Iceland",      status: "visited", lat: 63.5300, lng: -19.3667, image: "assets/images/cities/solheimajokull-is.jpg",       caption: "" },
+  { id: "grundarfjordur-is",       name: "Grundarfjörður, Iceland",      status: "visited", lat: 64.9225, lng: -23.2586, image: "assets/images/cities/grundarfjordur-is.jpg",       caption: "" },
+  { id: "snaefellsbaer-is",        name: "Snæfellsbær, Iceland",         status: "visited", lat: 64.7883, lng: -23.3936, image: "assets/images/cities/snaefellsbaer-is.jpg",        caption: "" },
+  { id: "bildudalur-is",           name: "Bíldudalur, Iceland",          status: "visited", lat: 65.6853, lng: -23.5950, image: "assets/images/cities/bildudalur-is.jpg",           caption: "" },
+  { id: "patreksfjordur-is",       name: "Patreksfjörður, Iceland",      status: "visited", lat: 65.5936, lng: -23.9964, image: "assets/images/cities/patreksfjordur-is.jpg",       caption: "" },
+  { id: "raudasandur-is",          name: "Rauðasandur, Iceland",         status: "visited", lat: 65.4833, lng: -24.1167, image: "assets/images/cities/raudasandur-is.jpg",          caption: "" },
+  { id: "isafjordur-is",           name: "Ísafjörður, Iceland",          status: "visited", lat: 66.0755, lng: -23.1355, image: "assets/images/cities/isafjordur-is.jpg",           caption: "" },
+  { id: "fossholl-is",             name: "Fosshóll, Iceland",            status: "visited", lat: 65.6822, lng: -17.5500, image: "assets/images/cities/fossholl-is.jpg",             caption: "" },
+  { id: "hverfjall-is",            name: "Hverfjall, Iceland",           status: "visited", lat: 65.6053, lng: -16.8722, image: "assets/images/cities/hverfjall-is.jpg",            caption: "" },
+  { id: "skutustadahreppur-is",    name: "Skútustaðahreppur, Iceland",   status: "visited", lat: 65.6403, lng: -16.8093, image: "assets/images/cities/skutustadahreppur-is.jpg",    caption: "" },
+
+  // Scandinavia & Baltics
+  { id: "oslo-no",                 name: "Oslo, Norway",                 status: "visited", lat: 59.9139, lng: 10.7522,  image: "assets/images/cities/oslo-no.jpg",                 caption: "" },
+  { id: "stockholm-se",            name: "Stockholm, Sweden",            status: "visited", lat: 59.3293, lng: 18.0686,  image: "assets/images/cities/stockholm-se.jpg",            caption: "" },
+  { id: "helsinki-fi",             name: "Helsinki, Finland",            status: "visited", lat: 60.1699, lng: 24.9384,  image: "assets/images/cities/helsinki-fi.jpg",             caption: "" },
+  { id: "tallinn-ee",              name: "Tallinn, Estonia",             status: "visited", lat: 59.4370, lng: 24.7536,  image: "assets/images/cities/tallinn-ee.jpg",              caption: "" },
+  { id: "riga-lv",                 name: "Riga, Latvia",                 status: "visited", lat: 56.9496, lng: 24.1052,  image: "assets/images/cities/riga-lv.jpg",                 caption: "" }
 ];
 // Initialize Leaflet map on About page
 document.addEventListener('DOMContentLoaded', function () {
