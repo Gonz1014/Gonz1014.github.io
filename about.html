@@ -175,7 +175,9 @@
         margin-bottom: 1.5rem;
     }
 
-    .about-map-intro { max-width: 420px; }
+    /* Intro takes its own row so the legend, countries and filters line up side by side below it */
+    .about-map-intro { flex: 1 1 100%; max-width: none; }
+    .about-map-intro p { max-width: 420px; }
     .about-map-legend { display: flex; flex-direction: column; gap: 0.75rem; }
     .about-legend-list {
         display: flex;
@@ -183,6 +185,32 @@
         gap: 0.75rem 1.25rem;
         margin: 0;
         padding: 0;
+    }
+
+    .about-map-countries {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        /* Sit between the legend and the filters, taking the space left over */
+        flex: 1 1 16rem;
+    }
+
+    .about-countries-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.65rem;
+        margin: 0;
+        padding: 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .about-countries-list > li { margin: 0; padding: 0; }
+
+    .about-countries-list > li:not(:last-child)::after {
+        content: "\00b7";
+        margin-left: 0.65rem;
+        opacity: 0.4;
     }
 
     /* === Map marker pins (required for visibility) === */
@@ -540,6 +568,13 @@
                                                 <span>Visited</span>
                                             </li>
                                         </ul>
+                                    </div>
+                                    <!-- Countries visited; list and count are filled by JS from cityData -->
+                                    <div class="about-map-countries">
+                                        <p class="uk-text-small uk-text-muted uk-margin-remove">
+                                            Countries <span id="countries-count"></span>
+                                        </p>
+                                        <ul class="about-countries-list uk-list" id="countries-list"></ul>
                                     </div>
                                     <!-- Future: simple filters to toggle markers by status (to be wired with JS) -->
                                     <div class="about-filters">

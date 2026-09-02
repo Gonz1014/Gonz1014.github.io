@@ -28,6 +28,7 @@ var cityData = [
   { id: "hawaii-island-us",        name: "Hawaii Island (Big Island), USA", status: "visited", lat: 19.5429, lng: -155.6659, image: "assets/images/cities/hawaii-island-us.jpg",      caption: "" },
   { id: "bend-us",                 name: "Bend, USA",                    status: "visited", lat: 44.0582, lng: -121.3153, image: "assets/images/cities/bend-us.jpg",                 caption: "" },
   { id: "crater-lake-us",          name: "Crater Lake, USA",             status: "visited", lat: 42.9446, lng: -122.1090, image: "assets/images/cities/crater-lake-us.jpg",          caption: "" },
+  { id: "redwood-national-park-us", name: "Redwood National Park, USA",  status: "visited", lat: 41.2132, lng: -124.0046, image: "assets/images/cities/redwood-national-park-us.jpg", caption: "" },
   { id: "leavenworth-us",          name: "Leavenworth, USA",             status: "visited", lat: 47.5962, lng: -120.6615, image: "assets/images/cities/leavenworth-us.jpg",          caption: "" },
   { id: "lake-wenatchee-us",       name: "Lake Wenatchee, USA",          status: "visited", lat: 47.8397, lng: -120.7889, image: "assets/images/cities/lake-wenatchee-us.jpg",       caption: "" },
   { id: "coeur-dalene-us",         name: "Coeur d'Alene, USA",           status: "visited", lat: 47.6777, lng: -116.7805, image: "assets/images/cities/coeur-dalene-us.jpg",         caption: "" },
@@ -154,6 +155,7 @@ var cityData = [
   { id: "fossholl-is",             name: "Fosshóll, Iceland",            status: "visited", lat: 65.6822, lng: -17.5500, image: "assets/images/cities/fossholl-is.jpg",             caption: "" },
   { id: "hverfjall-is",            name: "Hverfjall, Iceland",           status: "visited", lat: 65.6053, lng: -16.8722, image: "assets/images/cities/hverfjall-is.jpg",            caption: "" },
   { id: "skutustadahreppur-is",    name: "Skútustaðahreppur, Iceland",   status: "visited", lat: 65.6403, lng: -16.8093, image: "assets/images/cities/skutustadahreppur-is.jpg",    caption: "" },
+  { id: "fljotsdalsherad-is",      name: "Fljótsdalshérað, Iceland",     status: "visited", lat: 65.1447, lng: -15.4128, image: "assets/images/cities/fljotsdalsherad-is.jpg",      caption: "" },
 
   // Scandinavia & Baltics
   { id: "oslo-no",                 name: "Oslo, Norway",                 status: "visited", lat: 59.9139, lng: 10.7522,  image: "assets/images/cities/oslo-no.jpg",                 caption: "" },
@@ -378,10 +380,21 @@ document.addEventListener('DOMContentLoaded', function () {
     p.style.pointerEvents = 'auto';
   }
 
-  // Mark any countries you've LIVED in here (ISO-2 codes, lowercase)
-  var livedCountries = new Set([
+  // Countries you've LIVED in, derived from any city marked status: "lived"
+  var livedCountries = new Set();
+  validCities.forEach(function (c) {
+    if (c.status !== 'lived') return;
+    var code = normalizeIso(countryFromId(c.id));
+    if (code) livedCountries.add(code);
+  });
+  // Optional: manually mark additional lived countries by ISO-2, lowercase
+  var livedCountriesManual = new Set([
     // e.g., 'us', 'au'
   ]);
+  livedCountriesManual.forEach(function (code) {
+    var iso = normalizeIso(code);
+    if (iso) livedCountries.add(iso);
+  });
 
   // Determine status for an ISO-2 code (normalized) using lived + visited + manual
   // NOTE: returns null for "not yet" so we can FILTER them out entirely.
@@ -548,8 +561,10 @@ document.addEventListener('DOMContentLoaded', function () {
   validCities.forEach(function (city) {
     var _iso = normalizeIso(countryFromId(city.id));
     var computedCountryStatus = statusForIso(_iso);
-    var pinStatus = (city.status === 'lived' || computedCountryStatus === 'lived') ? 'lived'
-                   : ((city.status === 'visited' || computedCountryStatus === 'visited') ? 'visited' : null);
+    // Pin colour follows the CITY's own status. Country-level "lived" is shown by the
+    // country fill — it must not recolour every pin inside that country.
+    var pinStatus = city.status === 'lived' ? 'lived'
+                   : ((city.status === 'visited' || computedCountryStatus) ? 'visited' : null);
     if (!pinStatus) return;
     city.pinStatus = pinStatus;
     // Custom circular pin (uses CSS to be visible)
@@ -599,6 +614,34 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       cityList.appendChild(li);
     });
+  }
+
+  // Populate the "Countries" summary beside the legend.
+  // Country name is the last comma-separated part of the city name ("Madrid, Spain" => "Spain"),
+  // deduped by the ISO-2 code already encoded in the city id.
+  var countriesList = document.getElementById('countries-list');
+  var countriesCount = document.getElementById('countries-count');
+  if (countriesList || countriesCount) {
+    var countryNames = new Map(); // iso2 -> display name
+    renderedCities.forEach(function (city) {
+      var iso = normalizeIso(countryFromId(city.id));
+      if (!iso || countryNames.has(iso)) return;
+      var parts = (city.name || '').split(',');
+      var label = parts[parts.length - 1].trim();
+      if (label) countryNames.set(iso, label);
+    });
+    var countryLabels = Array.from(countryNames.values()).sort(function (a, b) {
+      return a.localeCompare(b);
+    });
+    if (countriesCount) countriesCount.textContent = '(' + countryLabels.length + ')';
+    if (countriesList) {
+      countriesList.innerHTML = '';
+      countryLabels.forEach(function (label) {
+        var li = document.createElement('li');
+        li.textContent = label;
+        countriesList.appendChild(li);
+      });
+    }
   }
 
   // Filter pins and list items based on checkboxes
