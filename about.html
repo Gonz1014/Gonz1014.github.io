@@ -185,6 +185,33 @@
         padding: 0;
     }
 
+    /* Total counts, as pill badges above the map */
+    .map-stat-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .map-stat-badge {
+        background: #f4f5f7;
+        border: 1px solid #e1e3e9;
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+    }
+
+    .map-stat-badge b { font-weight: 600; }
+
+    html.uk-dark .map-stat-badge,
+    .dark .map-stat-badge,
+    html.dark .map-stat-badge {
+        background: #1a1a1a;
+        border-color: #333333;
+        color: #e6e9f2;
+    }
+
     /* Countries visited, as pills below the map */
     .country-pills-grid {
         display: grid;
@@ -598,6 +625,11 @@
                                             </li>
                                         </ul>
                                     </div>
+                                </div>
+                                <!-- Totals, filled by JS from cityData -->
+                                <div class="map-stat-badges">
+                                    <span class="map-stat-badge"><b id="countries-count"></b> countries</span>
+                                    <span class="map-stat-badge"><b id="cities-count"></b> cities</span>
                                 </div>
                                 <div class="about-map-grid">
                                     <!-- Map and hover card shell -->

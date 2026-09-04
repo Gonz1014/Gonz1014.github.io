@@ -633,7 +633,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var countryLabels = Array.from(countryNames.values()).sort(function (a, b) {
       return a.localeCompare(b);
     });
-    if (countriesCount) countriesCount.textContent = '(' + countryLabels.length + ')';
+    if (countriesCount) countriesCount.textContent = String(countryLabels.length);
+    var citiesCount = document.getElementById('cities-count');
+    if (citiesCount) citiesCount.textContent = String(renderedCities.length);
     if (countriesList) {
       countriesList.innerHTML = '';
       countryLabels.forEach(function (label) {
