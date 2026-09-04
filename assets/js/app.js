@@ -132,15 +132,19 @@ var cityData = [
   { id: "naples-it",               name: "Naples, Italy",                status: "visited", lat: 40.8518, lng: 14.2681, image: "assets/images/cities/naples-it1.jpg",               caption: "" },
   { id: "positano-it",             name: "Positano, Italy",              status: "visited", lat: 40.6281, lng: 14.4845, image: "assets/images/cities/positano-it.jpg",             caption: "" },
   { id: "sorrento-it",             name: "Sorrento, Italy",              status: "visited", lat: 40.6263, lng: 14.3758, image: "assets/images/cities/sorrento-it.jpg",             caption: "" },
-  { id: "como-it",                 name: "Como, Italy",                  status: "visited", lat: 45.8081, lng: 9.0852,  image: "assets/images/cities/como-it.jpg",                caption: "" },
+  { id: "lago-di-lugano-ch",       name: "Lago di Lugano, Switzerland",  status: "visited", lat: 45.9800, lng: 8.9700,  image: "assets/images/cities/lago-di-lugano-ch.jpg",       caption: "" },
   { id: "civitavecchia-it",        name: "Civitavecchia, Italy",         status: "visited", lat: 42.0930, lng: 11.7926, image: "assets/images/cities/civitavecchia-it1.jpg",        caption: "" },
   { id: "pisa-it",                 name: "Pisa, Italy",                  status: "visited", lat: 43.7228, lng: 10.4017, image: "assets/images/cities/pisa-it1.jpg",                 caption: "" },
   { id: "varese-it",               name: "Varese, Italy",                status: "visited", lat: 45.8200, lng: 8.8250,  image: "assets/images/cities/varese-it1.jpg",               caption: "" },
   { id: "marseille-fr",            name: "Marseille, France",            status: "visited", lat: 43.2965, lng: 5.3698,  image: "assets/images/cities/marseille-fr1.jpg",            caption: "" },
   { id: "palermo-it",              name: "Palermo, Italy",               status: "visited", lat: 38.1157, lng: 13.3615, image: "assets/images/cities/palermo-it1.jpg",              caption: "" },
+  { id: "vatican-city-va",         name: "Vatican City",                 status: "visited", lat: 41.9029, lng: 12.4534, image: "assets/images/cities/vatican-city-va.jpg",          caption: "" },
 
   // Canada
   { id: "toronto-ca",              name: "Toronto, Canada",              status: "visited", lat: 43.6532, lng: -79.3832, image: "assets/images/cities/toronto-ca1.jpg",              caption: "" },
+
+  // Bahamas
+  { id: "cat-cay-bs",              name: "Cat Cay, Bahamas",             status: "visited", lat: 25.5567, lng: -79.2836, image: "assets/images/cities/cat-cay-bs.jpg",              caption: "" },
 
   // Iceland
   { id: "reykjavik-is",            name: "Reykjavík, Iceland",           status: "visited", lat: 64.1466, lng: -21.9426, image: "assets/images/cities/reykjavik-is.jpg",            caption: "" },
