@@ -175,9 +175,7 @@
         margin-bottom: 1.5rem;
     }
 
-    /* Intro takes its own row so the legend, countries and filters line up side by side below it */
-    .about-map-intro { flex: 1 1 100%; max-width: none; }
-    .about-map-intro p { max-width: 420px; }
+    .about-map-intro { max-width: 420px; }
     .about-map-legend { display: flex; flex-direction: column; gap: 0.75rem; }
     .about-legend-list {
         display: flex;
@@ -187,30 +185,43 @@
         padding: 0;
     }
 
-    .about-map-countries {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        /* Sit between the legend and the filters, taking the space left over */
-        flex: 1 1 16rem;
+    /* Countries visited, as pills below the map */
+    .country-pills-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        margin-top: 16px;
+        max-height: 160px;
+        overflow-y: auto;
     }
 
-    .about-countries-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.35rem 0.65rem;
-        margin: 0;
-        padding: 0;
-        font-size: 0.9rem;
-        line-height: 1.4;
+    .country-pill {
+        background: #f4f5f7;
+        border: 1px solid #e1e3e9;
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    .about-countries-list > li { margin: 0; padding: 0; }
+    html.uk-dark .country-pill,
+    .dark .country-pill,
+    html.dark .country-pill {
+        background: #1a1a1a;
+        border-color: #333333;
+        color: #e6e9f2;
+    }
 
-    .about-countries-list > li:not(:last-child)::after {
-        content: "\00b7";
-        margin-left: 0.65rem;
-        opacity: 0.4;
+    /* Five across is unreadable on a phone */
+    @media (max-width: 959px) {
+        .country-pills-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 599px) {
+        .country-pills-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* === Map marker pins (required for visibility) === */
@@ -569,13 +580,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- Countries visited; list and count are filled by JS from cityData -->
-                                    <div class="about-map-countries">
-                                        <p class="uk-text-small uk-text-muted uk-margin-remove">
-                                            Countries <span id="countries-count"></span>
-                                        </p>
-                                        <ul class="about-countries-list uk-list" id="countries-list"></ul>
-                                    </div>
                                     <!-- Future: simple filters to toggle markers by status (to be wired with JS) -->
                                     <div class="about-filters">
                                         <p class="uk-text-small uk-text-muted uk-margin-small-bottom">Filter cities</p>
@@ -619,6 +623,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Countries visited, rendered as pills by JS from cityData -->
+                                <div class="country-pills-grid" id="countries-list"></div>
                             </div>
 
                         </div>

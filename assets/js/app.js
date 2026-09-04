@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Populate the "Countries" summary beside the legend.
+  // Populate the country pills below the map.
   // Country name is the last comma-separated part of the city name ("Madrid, Spain" => "Spain"),
   // deduped by the ISO-2 code already encoded in the city id.
   var countriesList = document.getElementById('countries-list');
@@ -637,9 +637,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (countriesList) {
       countriesList.innerHTML = '';
       countryLabels.forEach(function (label) {
-        var li = document.createElement('li');
-        li.textContent = label;
-        countriesList.appendChild(li);
+        var pill = document.createElement('span');
+        pill.className = 'country-pill';
+        pill.textContent = label;
+        pill.title = label; // full name on hover when the pill ellipsizes
+        countriesList.appendChild(pill);
       });
     }
   }
