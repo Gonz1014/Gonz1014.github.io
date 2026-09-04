@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
   map.fitBounds([[-60, -180], [80, 180]]);
 
   // Add Carto Dark Matter tiles for dark basemap
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=cb1_2x4v_1_8d7a8321eba7cb4a955927fe', {
     subdomains: 'abcd',
     maxZoom: 19,
     minZoom: 1,
